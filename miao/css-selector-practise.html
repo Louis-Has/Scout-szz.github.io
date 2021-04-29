@@ -9,12 +9,12 @@
       color: red;
     }
 
-    p.a:hover {
-      color: red;
-    }
-
     p.a:focus {
       color: blue;
+    }
+
+    p.a:hover {
+      color: red;
     }
 
     p.a:active {
@@ -41,7 +41,7 @@
       color: pink;
     }
 
-    div a[href*=mail i] {
+    div a[href*="mail" i][href*="@"] {
       color: blue;
     }
 
@@ -243,6 +243,16 @@
     div.prime ul :nth-child(6n-7):not(:nth-child(5n+10)):not(:nth-child(7n+14)) {
       color: red;
     }
+
+    .prime ul :nth-child(1);
+    .prime ul :nth-child(2n+4);
+    .prime ul :nth-child(3n+9);
+    .prime ul :nth-child(5n+25);
+    .prime ul :nth-child(7n+49);
+    .prime ul :nth-child(11n+121) {
+
+    }
+
   </style>
   <div class="prime">
     <p>让所有的质/素数(prime)（2，3，5，7，11，13……）跟合数（4，6，8，9，10……）为不同的颜色</p>
