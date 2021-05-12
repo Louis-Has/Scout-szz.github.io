@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+      margin: 0;
+      font-size: 0;
+    }
+
+    body * {
+      font-size: 16px;
+    }
+
+    .p0 {
+      display: inline-block;
+      width: 200px;
+      height: 300px;
+      border: 10px dashed violet;
+      position: relative;
+    }
+
+    .p1 {
+      max-width: 100%;
+      max-height: 100%;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .pl {
+      display: inline-block;
+      border: 10px dashed green;
+      box-sizing: border-box;
+      vertical-align: top;
+    }
+
+    .pp {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="p0">
+    <img src="https://img.ithome.com/newsuploadfiles/focus/58d1cf25-ed32-479e-902f-c28f7f1438f6.png" alt="" class="p1">
+  </div>
+  <div class="p0">
+    <img
+      src="https://img12.360buyimg.com/n1/s450x450_jfs/t1/161386/32/15474/35926/60619c13Eef1b9998/ad37a0ebff465c12.jpg"
+      alt="" class="p1">
+  </div>
+  <span>5.12 zoye</span>
+  <div class="pl">
+    <img src="https://pic5.iqiyipic.com/image/20200916/8c/4d/a_100411141_m_601_m4_480_270.jpg?caplist=jpg,webp,avif" alt="" class="pp">
+  </div>
+
+</body>
+
+</html>
