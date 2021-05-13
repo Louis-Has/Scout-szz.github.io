@@ -7,6 +7,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page</title>
   <style>
+    .icon {
+      display: inline-block;
+      background-image: url(nav_logo240_hr.webp);
+      /* 引用logo240 */
+      background-color: transparent;
+    }
+
+    .logo {
+      width: 240px;
+      height: 80px;
+      background-position: -45px 0px;
+      zoom: 0.5;
+    }
+
+    .setting {
+      width: 50px;
+      height: 50px;
+      background-position: -75px -510px;
+    }
+
+    .user {
+      width: 30px;
+      height: 35px;
+      background-position: -30px -655px;
+    }
+
+    .bottom1 {
+      width: 62px;
+      height: 80px;
+      background-position: -45px 0px;
+    }
+
+    .bottom2 {
+      width: 88px;
+      height: 80px;
+      background-position: -104px 0px;
+    }
+
+    .bottom3 {
+      width: 95px;
+      height: 80px;
+      background-position: -190px 0px;
+    }
+
     * {
       margin: 0;
       background-color: rgba(0, 0, 0, 0.1);
@@ -16,71 +60,84 @@
       font-size: 0;
     }
 
-    .logo {
-      display: inline-block;
-      width: 240px;
-      height: 80px;
-      background-position: -45px 0px;
-      background-image: url(nav_logo240_hr.webp);
+    .nav * {
+      vertical-align: middle;
     }
 
-    .setting {
+    .nav input {
+      height: 2rem;
+      background-color: #fff;
+      border: 0px;
+      border-radius: 3rem;
+      box-shadow: 1px 1px 4px gray;
+    }
+
+    .nav input:hover {
+      box-shadow: 0px 0px 6px gray;
+    }
+
+    .nav input {
+      outline: none;
+      text-indent: 1rem;
+      font-size: 1.2rem;
+      padding: 8px;
+      width: 600px;
+      /* margin: auto; */
+    }
+
+    .nav .n1 {
       display: inline-block;
       width: 50px;
-      height: 50px;
-      background-position: -75px -510px;
-      background-image: url(nav_logo240_hr.webp);
+    }
+
+    .nav .topsearch {
+      margin: auto;
+      width: 1100px;
+      padding-top: 2rem;
+      background-color: white;
+      display: inline-block;
+    }
+
+    .nav {
+      height: 140px;
+      background-color: white;
+      position: relative;
+    }
+
+    .bottom {
+      height: 400px;
+    }
+    
+    .setting {
+      position: absolute;
     }
 
     .user {
-      display: inline-block;
-      width: 35px;
-      height: 35px;
-      background-position: -25px -655px;
-      background-image: url(nav_logo240_hr.webp);
-    }
-
-    .bottom1 {
-      display: inline-block;
-      width: 62px;
-      height: 80px;
-      background-position: -45px 0px;
-      background-image: url(nav_logo240_hr.webp);
-    }
-
-    .bottom2 {
-      display: inline-block;
-      width: 88px;
-      height: 80px;
-      background-position: -104px 0px;
-      background-image: url(nav_logo240_hr.webp);
-    }
-
-    .bottom3 {
-      display: inline-block;
-      width: 95px;
-      height: 80px;
-      background-position: -190px 0px;
-      background-image: url(nav_logo240_hr.webp);
+      position: absolute;
     }
   </style>
 </head>
 
 <body>
   <div class="nav">
-    <span class="logo"></span>
-    <input type="text">
-    <span class="setting"></span>
-    <span class="user"></span>
+    <div class="topsearch">
+      <span class="icon logo"></span>
+      <div class="n1"></div>
+      <input type="text">
+    </div>
+    <span class="icon setting"></span>
+    <span class="icon user"></span>
   </div>
-  <div class="main"></div>
+  <div class="main">
+    <hr>
+  </div>
   <div class="bottom">
-    <span class="bottom1"></span>
-    <span class="bottom2"></span>
-    <span class="bottom2"></span>
-    <span class="bottom2"></span>
-    <span class="bottom2"></span>
-    <span class="bottom3"></span>
+    <span class="icon bottom1"></span>
+    <span class="icon bottom2"></span>
+    <span class="icon bottom2"></span>
+    <span class="icon bottom2"></span>
+    <span class="icon bottom2"></span>
+    <span class="icon bottom3"></span>
   </div>
 </body>
 

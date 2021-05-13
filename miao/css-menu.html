@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    div.nav {
+      height: 200px;
+    }
+
+    .nav>ul {
+      display: inline-block;
+      position: relative;
+      left: 200px;
+      width: 800px;
+    }
+
+    ul {
+      font-size: 0;
+      display: none;
+      padding: 0;
+    }
+
+    li {
+      display: none;
+      box-sizing: border-box;
+      line-height: 1rem;
+      padding: 2rem;
+      font-size: 16px;
+    }
+
+    li.d {
+      display: inline-block;
+    }
+
+    a:hover {
+      color: rgb(204, 84, 0);
+    }
+
+    li.s:hover>a {
+      color: white;
+    }
+
+    li.s:hover {
+      background-color: rgb(204, 84, 0);
+    }
+
+    li.d:hover ul.d {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 100%;
+      /* height: 100%; */
+      background-color: #fff;
+    }
+
+    li.d:hover li.s {
+      display: inline-block;
+      position: relative;
+    }
+
+    li.s:hover ul {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 100%;
+      /* height: 100%; */
+      background-color: #fff;
+    }
+
+    li.s:hover li {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+
+    <ul>
+      <li class="d"><a href="">leader1</a>
+        <ul class="d">
+          <li class="s"><a href="">sec1.1</a></li>
+        </ul>
+      </li>
+      <li class="d"><a href="">leader2</a>
+        <ul class="d">
+          <li class="s"><a href="">sec2.1</a>
+            <ul>
+              <li><a href="">Lorem.</a></li>
+              <li><a href="">Libero?</a></li>
+              <li><a href="">Distinctio.</a></li>
+              <li><a href="">Ea?</a></li>
+              <li><a href="">Officia?</a></li>
+            </ul>
+          </li>
+          <li class="s"><a href="">sec2.2</a>
+            <ul>
+              <li><a href="">Lorem.</a></li>
+              <li><a href="">Excepturi?</a></li>
+              <li><a href="">Consequatur?</a></li>
+            </ul>
+          </li>
+          <li class="s"><a href="">sec2.3</a>
+            <ul>
+              <li><a href="">Lorem.</a></li>
+              <li><a href="">Velit!</a></li>
+              <li><a href="">Rwsb.</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="d"><a href="">leader3</a>
+        <ul class="d">
+          <li class="s"><a href="">sec3.1</a>
+          </li>
+          <li class="s"><a href="">sec3.2</a>
+            <ul>
+              <li><a href="">Lorem.</a></li>
+              <li><a href="">Lorem.</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+  </div>
+</body>
+
+</html>
