@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div.pic {
+      /* width: 200px; */
+      /* height: 200px; */
+      /* background-color: gray; */
+    }
+
+    .heart {
+      display: inline-block;
+      background-image: url(web_heart_animation.png);
+      width: 100px;
+      height: 100px;
+      border: 2px dashed black;
+      background-position: 0px 0px;
+      /* animation: twhe 2s steps(28) infinite reverse both running; */
+      /* animation-play-state: paused; */
+    }
+
+    @keyframes twhe {
+      100% {
+        background-position: 2800px 0;
+      }
+    }
+
+    .pic:hover .heart{
+      transition: 1s steps(28);
+      background-position: -2800px 0px;
+      /* animation-play-state: running; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pic">
+    <span class="heart"></span>
+    <span class="heart"></span>
+    <span class="heart"></span>
+    <span class="heart"></span>
+  </div>
+</body>
+
+</html>

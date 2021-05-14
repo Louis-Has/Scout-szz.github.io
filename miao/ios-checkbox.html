@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ios button</title>
+  <style>
+    div {
+      width: 600px;
+      line-height: 400px;
+      border: 2px dashed black;
+      font-size: 0;
+      text-align: center;
+    }
+
+    .r {
+      display: inline-block;
+      vertical-align: middle;
+      width: 200px;
+      height: 100px;
+      line-height: 100px;
+      border-radius: 5rem;
+      background-color: rgb(30, 144, 255);
+      box-shadow: 0 0 5px gray;
+      position: relative;
+    }
+
+    .c {
+      width: 200px;
+      height: 100px;
+      line-height: 100px;
+      border: 0;
+      background-color: white;
+      border-radius: 5rem;
+      position: absolute;
+      opacity: 1;
+      transition: 0.4s 0.1s;
+    }
+
+    .b {
+      display: inline-block;
+      vertical-align: middle;
+      width: 50px;
+      height: 90px;
+      background-color: white;
+      box-shadow: 1px 1px 5px rgba(128, 128, 128, 0.4), 1px 1px 5px rgba(128, 128, 128, 0.4);
+      border-radius: 5rem;
+      position: relative;
+      left: -50px;
+      padding-right: 40px;
+      transition: left .5s, padding-left .3s .2s, padding-right .5s;
+    }
+
+    input {
+      display: none;
+    }
+
+    input:checked+label .b {
+      transition: left .5s, padding-left .5s, padding-right .3s .2s;
+      left: 50px;
+      padding-left: 40px;
+      padding-right: 0px;
+    }
+
+    input:checked+.r .c {
+      /* width: 10px; */
+      /* height: 10px; */
+      opacity: 0;
+      transform: scale(0, 0);
+    }
+
+    input:checked+.r {
+      /* background-color: #fff; */
+      box-shadow: 0 0 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+
+    <input type="checkbox" class="" id="ios"></input>
+    <label for="ios" class="r">
+      <div class="c"></div>
+      <span class="b"></span>
+    </label>
+
+  </div>
+</body>
+
+</html>
