@@ -53,6 +53,7 @@
 
     * {
       margin: 0;
+      padding: 0;
       background-color: rgba(0, 0, 0, 0.1);
     }
 
@@ -81,39 +82,92 @@
       text-indent: 1rem;
       font-size: 1.2rem;
       padding: 8px;
+      margin-left: 100px;
       width: 600px;
-      /* margin: auto; */
-    }
-
-    .nav .n1 {
-      display: inline-block;
-      width: 50px;
     }
 
     .nav .topsearch {
-      margin: auto;
+      margin-left: 50px;
       width: 1100px;
-      padding-top: 2rem;
       background-color: white;
       display: inline-block;
+      vertical-align: middle;
     }
 
     .nav {
-      height: 140px;
+      width: 100%;
       background-color: white;
-      position: relative;
+      padding-top: 40px;
     }
 
     .bottom {
-      height: 400px;
+      height: 100px;
     }
-    
+
     .setting {
-      position: absolute;
+      position: relative;
+      left: calc(100% - 1280px);
     }
 
     .user {
+      position: relative;
+      left: calc(100% - 1260px);
+    }
+
+    /* 以下为表格菜单 */
+    div.tags {
+      font-size: 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    li {
+      list-style-type: none;
+      font-weight: normal;
+      padding: 8px;
+      line-height: 1rem;
+      text-align: left;
+      width: 100px;
+    }
+
+    li:hover {
+      color: rgb(26, 115, 232);
+      font-weight: bold;
+      border-left: 5px solid rgb(26, 115, 232);
+      padding-left: 3px;
+    }
+
+    .tags>ul>li {
+      display: inline-block;
+      vertical-align: top;
+      width: auto;
+      padding: 16px;
+      margin-left: 10px;
+      position: relative;
+    }
+
+    .tags>ul>li:hover {
+      border-bottom: 5px solid rgb(26, 115, 232);
+      border-left: 0;
+      padding-bottom: 11px;
+    }
+
+    li ul {
+      display: none;
+      color: black;
       position: absolute;
+      top: 50px;
+      left: 0px;
+      border-radius: 8px;
+    }
+
+    .tags>ul>li:hover>ul {
+      display: block;
+    }
+
+    div.main {
+      height: 300px;
+      background-color: #fff;
     }
   </style>
 </head>
@@ -122,11 +176,70 @@
   <div class="nav">
     <div class="topsearch">
       <span class="icon logo"></span>
-      <div class="n1"></div>
       <input type="text">
     </div>
     <span class="icon setting"></span>
     <span class="icon user"></span>
+    <div class="tags">
+      <ul>
+        <li>全部
+          <ul>
+            <li>Lorem.</li>
+            <li>Labore.</li>
+            <li>Consectetur!</li>
+            <li>Consequuntur.</li>
+            <li>Voluptates.</li>
+            <li>Porro!</li>
+          </ul>
+        </li>
+        <li>图片
+          <ul>
+            <li>Lorem.</li>
+            <li>Incidunt.</li>
+          </ul>
+        </li>
+        <li>新闻</li>
+        <li>视频
+          <ul>
+            <li>Lorem.</li>
+            <li>Animi.</li>
+            <li>Officia?</li>
+            <li>Tenetur.</li>
+            <li>Facilis.</li>
+            <li>Facilis.</li>
+            <li>Quidem?</li>
+            <li>Tempora.</li>
+            <li>Minima.</li>
+          </ul>
+        </li>
+        <li>更多
+          <ul>
+            <li>购物</li>
+            <li>图书</li>
+            <li>财经</li>
+          </ul>
+        </li>
+        <li>设置
+          <ul>
+            <li>搜索设置</li>
+            <li>语言</li>
+            <li>隐藏1</li>
+            <li>隐藏2</li>
+            <li>高级搜索</li>
+            <li>搜索记录</li>
+            <li>Google数据</li>
+            <li>搜索帮助</li>
+          </ul>
+        </li>
+        <li>工具
+          <ul>
+            <li>不限语言</li>
+            <li>不限时间</li>
+            <li>所有结果</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="main">
     <hr>
