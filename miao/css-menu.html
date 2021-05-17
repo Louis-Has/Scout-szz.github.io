@@ -5,136 +5,265 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Page</title>
   <style>
+    .icon {
+      display: inline-block;
+      background-image: url(nav_logo240_hr.webp);
+      /* 引用logo240 */
+      background-color: transparent;
+    }
+
+    .logo {
+      width: 240px;
+      height: 80px;
+      background-position: -45px 0px;
+      zoom: 0.5;
+    }
+
+    .setting {
+      width: 50px;
+      height: 50px;
+      background-position: -75px -510px;
+    }
+
+    .user {
+      width: 30px;
+      height: 35px;
+      background-position: -30px -655px;
+    }
+
+    .bottom1 {
+      width: 62px;
+      height: 80px;
+      background-position: -45px 0px;
+    }
+
+    .bottom2 {
+      width: 88px;
+      height: 80px;
+      background-position: -104px 0px;
+    }
+
+    .bottom3 {
+      width: 95px;
+      height: 80px;
+      background-position: -190px 0px;
+    }
+
     * {
       margin: 0;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.2);
-    }
-
-    div.nav {
-      height: 200px;
-    }
-
-    .nav>ul {
-      display: inline-block;
-      position: relative;
-      left: 200px;
-      width: 800px;
-    }
-
-    ul {
-      font-size: 0;
-      display: none;
       padding: 0;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    body>div {
+      font-size: 0;
+    }
+
+    .nav * {
+      vertical-align: middle;
+    }
+
+    .nav input {
+      height: 2rem;
+      background-color: #fff;
+      border: 0px;
+      border-radius: 3rem;
+      box-shadow: 1px 1px 4px gray;
+    }
+
+    .nav input:hover {
+      box-shadow: 0px 0px 6px gray;
+    }
+
+    .nav input {
+      outline: none;
+      text-indent: 1rem;
+      font-size: 1.2rem;
+      padding: 8px;
+      margin-left: 100px;
+      width: 600px;
+    }
+
+    .nav .topsearch {
+      margin-left: 50px;
+      width: 1100px;
+      background-color: white;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .nav {
+      width: 100%;
+      background-color: white;
+      padding-top: 40px;
+    }
+
+    .bottom {
+      height: 100px;
+    }
+
+    .setting {
+      position: relative;
+      left: calc(100% - 1280px);
+    }
+
+    .user {
+      position: relative;
+      left: calc(100% - 1260px);
+    }
+
+    /* 以下为表格菜单 */
+    div.tags {
+      font-size: 1rem;
+      text-align: center;
+      margin-top: 2rem;
     }
 
     li {
-      display: none;
-      box-sizing: border-box;
+      list-style-type: none;
+      font-weight: normal;
+      padding: 8px;
       line-height: 1rem;
-      padding: 2rem;
-      font-size: 16px;
+      text-align: left;
+      width: 120px;
     }
 
-    li.d {
+    li:hover {
+      color: rgb(26, 115, 232);
+      font-weight: bold;
+      border-left: 5px solid rgb(26, 115, 232);
+      padding-left: 3px;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .tags>ul>li {
       display: inline-block;
-    }
-
-    a:hover {
-      color: rgb(204, 84, 0);
-    }
-
-    li.s:hover>a {
-      color: white;
-    }
-
-    li.s:hover {
-      background-color: rgb(204, 84, 0);
-    }
-
-    li.d:hover ul.d {
-      display: block;
-      position: absolute;
-      left: 0;
-      top: 100%;
-      width: 100%;
-      /* height: 100%; */
-      background-color: #fff;
-    }
-
-    li.d:hover li.s {
-      display: inline-block;
+      vertical-align: top;
+      width: auto;
+      padding: 16px;
+      margin-left: 10px;
       position: relative;
+      background-color: transparent;
     }
 
-    li.s:hover ul {
-      display: block;
+    .tags>ul>li:hover {
+      border-bottom: 5px solid rgb(26, 115, 232);
+      border-left: 0;
+      padding-bottom: 11px;
+    }
+
+    li ul {
+      /* display: none; */
+      opacity: 0;
+      visibility: hidden;
+      color: black;
       position: absolute;
-      left: 0;
-      top: 100%;
-      width: 100%;
-      /* height: 100%; */
-      background-color: #fff;
+      top: 49px;
+      left: 20px;
+      border-radius: 8px;
     }
 
-    li.s:hover li {
-      display: block;
+    .tags>ul>li:hover>ul {
+      transition: 0.5s ease-out;
+      left: 0px;
+      opacity: 1;
+      visibility: visible;
+      /* display: block; */
+    }
+
+    div.main {
+      height: 300px;
+      background-color: #fff;
     }
   </style>
 </head>
 
 <body>
   <div class="nav">
-
-    <ul>
-      <li class="d"><a href="">leader1</a>
-        <ul class="d">
-          <li class="s"><a href="">sec1.1</a></li>
-        </ul>
-      </li>
-      <li class="d"><a href="">leader2</a>
-        <ul class="d">
-          <li class="s"><a href="">sec2.1</a>
-            <ul>
-              <li><a href="">Lorem.</a></li>
-              <li><a href="">Libero?</a></li>
-              <li><a href="">Distinctio.</a></li>
-              <li><a href="">Ea?</a></li>
-              <li><a href="">Officia?</a></li>
-            </ul>
-          </li>
-          <li class="s"><a href="">sec2.2</a>
-            <ul>
-              <li><a href="">Lorem.</a></li>
-              <li><a href="">Excepturi?</a></li>
-              <li><a href="">Consequatur?</a></li>
-            </ul>
-          </li>
-          <li class="s"><a href="">sec2.3</a>
-            <ul>
-              <li><a href="">Lorem.</a></li>
-              <li><a href="">Velit!</a></li>
-              <li><a href="">Rwsb.</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li class="d"><a href="">leader3</a>
-        <ul class="d">
-          <li class="s"><a href="">sec3.1</a>
-          </li>
-          <li class="s"><a href="">sec3.2</a>
-            <ul>
-              <li><a href="">Lorem.</a></li>
-              <li><a href="">Lorem.</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-
+    <div class="topsearch">
+      <span class="icon logo"></span>
+      <input type="text">
+    </div>
+    <span class="icon setting"></span>
+    <span class="icon user"></span>
+    <div class="tags">
+      <ul>
+        <li>全部
+          <ul>
+            <li>Lorem.</li>
+            <li>Labore.</li>
+            <li>Consectetur!</li>
+            <li>Consequuntur.</li>
+            <li>Voluptates.</li>
+            <li>Porro!</li>
+          </ul>
+        </li>
+        <li>图片
+          <ul>
+            <li>Lorem.</li>
+            <li>Incidunt.</li>
+          </ul>
+        </li>
+        <li>新闻
+          <ul>
+            <li>Lorem.</li>
+            <li>Laudantium.</li>
+          </ul>
+        </li>
+        <li>视频
+          <ul>
+            <li>Lorem.</li>
+            <li>Animi.</li>
+            <li>Officia?</li>
+            <li>Tenetur.</li>
+            <li>Facilis.</li>
+            <li>Facilis.</li>
+            <li>Quidem?</li>
+            <li>Tempora.</li>
+            <li>Minima.</li>
+          </ul>
+        </li>
+        <li>更多
+          <ul>
+            <li>购物</li>
+            <li>图书</li>
+            <li>财经</li>
+          </ul>
+        </li>
+        <li>设置
+          <ul>
+            <li>搜索设置</li>
+            <li>语言</li>
+            <li>隐藏1</li>
+            <li>隐藏2</li>
+            <li>高级搜索</li>
+            <li>搜索记录</li>
+            <li>Google数据</li>
+            <li>搜索帮助</li>
+          </ul>
+        </li>
+        <li>工具
+          <ul>
+            <li>不限语言</li>
+            <li>不限时间</li>
+            <li>所有结果</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="main">
+    <hr>
+  </div>
+  <div class="bottom">
+    <span class="icon bottom1"></span>
+    <span class="icon bottom2"></span>
+    <span class="icon bottom2"></span>
+    <span class="icon bottom2"></span>
+    <span class="icon bottom2"></span>
+    <span class="icon bottom3"></span>
   </div>
 </body>
 
