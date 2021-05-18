@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+    }
+
+    nav {
+      width: 100vw;
+      height: 100px;
+      background-color: green;
+    }
+
+    aside {
+      width: 100px;
+      height: calc(100vh - 100px);
+      background-color: aquamarine;
+      float: left;
+    }
+
+    main {
+      height: calc(100vh - 100px);
+      background-color: bisque;
+      /* border: 1px solid black; */
+      display: flow-root;
+    }
+
+    div div {
+      width: 200px;
+      height: calc(100vh - 100px);
+      background-color: violet;
+    }
+
+    div :nth-child(-n + 2) {
+      float: right;
+    }
+
+    div.ex1 {
+      background-color: darkorchid;
+    }
+
+    div.ex3 {
+      width: auto;
+      background-color: cornflowerblue;
+      display: flow-root;
+    }
+  </style>
+</head>
+
+<body>
+  <nav></nav>
+  <aside></aside>
+  <main>
+    <div class="e">
+      <div class="ex1"></div>
+      <div class="ex2"></div>
+      <div class="ex3">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus voluptatibus ipsa nihil, totam accusantium, nisi
+        delectus quasi officia dolore fuga est quis labore assumenda quibusdam repellat possimus exercitationem dolores
+        hic.
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      /* background-color: rgba(0, 0, 0, 0.1); */
+    }
+
+    nav {
+      width: 100vw;
+      height: 200px;
+      background-color: orange;
+    }
+
+    aside {
+      width: 100px;
+      height: calc(100vh - 200px);
+      float: left;
+      background-color: green;
+    }
+
+    main {
+      height: calc(100vh - 200px);
+      display: flow-root;
+      background-color: gray;
+    }
+
+    .td div {
+      height: 200px;
+      margin: 0 .5rem;
+    }
+
+    .t1 {
+      display: flow-root;
+      background-color: violet;
+    }
+
+    .t2 {
+      width: 200px;
+      float: right;
+      background-color: chocolate;
+    }
+  </style>
+</head>
+
+<body>
+  <nav></nav>
+  <aside></aside>
+  <main>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur veritatis vel error perferendis
+    ipsa deserunt praesentium, porro iure, omnis assumenda officia fugiat saepe maiores doloremque quod nulla libero
+    mollitia suscipit.
+    <div class="td">
+      <div class="t2"></div>
+      <div class="t1"></div>
+    </div>
+  </main>
+</body>
+
+</html>
