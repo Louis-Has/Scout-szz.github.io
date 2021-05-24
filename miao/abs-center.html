@@ -7,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    body .d1 {
+      margin: 5rem;
+    }
+
     .d1 {
       width: 200px;
       height: 200px;
@@ -14,7 +18,7 @@
       margin: 5rem 0;
     }
 
-    .d2 {
+    .dd {
       width: 10px;
       height: 40px;
       background-color: rgba(0, 0, 0, 0.2);
@@ -23,30 +27,78 @@
     .p1 {
       text-align: center;
       line-height: 200px;
-
+      font-size: 0;
     }
 
     .p1 div {
+      height: 180px;
       display: inline-block;
-      width: 100px;
-      height: 100px;
       vertical-align: middle;
+      font-size: 16px;
+    }
+
+    .p2 {
+      position: relative;
+    }
+
+    .p2 .dd {
+      margin: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .p3 .dd {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      margin-top: -20px;
+      margin-left: -5px;
+    }
+
+    .d1:nth-child(3) {
+      border: 1px solid black;
+    }
+
+    .p4 {
+      display: table;
+    }
+
+    .p4 .dt {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .p4 .dt .dd {
+      margin: 0 auto;
     }
   </style>
 </head>
 
 <body>
   <div class="d1 p1">
-    <div class="d2"></div>
+    <div class="dd"></div>
   </div>
 
   <div class="d1 p2">
-    <div class="d2"></div>
+    <div class="dd"></div>
   </div>
 
   <div class="d1 p3">
-    <div class="d2"></div>
+    <div class="dd"></div>
   </div>
+  <div class="d1 p3">over!
+    <div class="dd"></div>
+  </div>
+
+  <div class="d1 p4">
+    <div class="dt">
+      <div class="dd"></div>
+    </div>
+  </div>
+
 </body>
 
 </html>

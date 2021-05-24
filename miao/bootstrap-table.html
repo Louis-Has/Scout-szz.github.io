@@ -13,26 +13,30 @@
     .table {
       border-collapse: collapse;
       margin: 20px;
-    }
-
-    table * {
-      padding: 8px;
-    }
-
-    tr {
-      border-bottom: 1px solid black;
       text-align: left;
     }
 
-    tbody tr {
+    .table * {
+      padding: 8px;
+    }
+
+    .table thead {
+      border-bottom: 1px solid black;
+    }
+
+    .table thead tr:last-child {
+      border-bottom: none;
+    }
+
+    .table tr {
       border-bottom: 1px solid rgb(222, 226, 230);
     }
 
-    th {
+    .table th {
       width: 80px;
     }
 
-    td {
+    .table td {
       width: 200px;
     }
   </style>
@@ -109,11 +113,14 @@
     .table-dark tr {
       background-color: #212529;
       color: #FFFFF2;
-      border-bottom: 1px solid #FFFFFF;
     }
 
-    .table-dark tbody tr {
-      border-bottom: 1px solid #596064;
+    .table-dark thead {
+      border-color: #fff;
+    }
+
+    .table-dark tr {
+      border-color: #596064;
     }
   </style>
   <table class="table table-dark table-striped">class="table table-dark table-striped"
@@ -152,8 +159,12 @@
     .table-hover tbody tr:hover * {
       background-color: #8f8f8f36;
     }
+
+    .table-red {
+      /* background-color: red; */
+    }
   </style>
-  <table class="table table-hover">class="table table-hover"
+  <table class="table table-hover xtable-red">class="table table-hover"
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -319,7 +330,7 @@
 
   <hr>
   <style>
-    .table-bordered * {
+    .table-bordered tr * {
       border: 1px solid #DEE2E6;
     }
   </style>
@@ -355,12 +366,8 @@
 
   <hr>
   <style>
-    .table-borderless {
-      border: 0px solid #DEE2E6;
-    }
-
     .table-borderless tr,
-    .table-borderless tbody tr {
+    .table-borderless thead {
       border-bottom: 0px;
     }
   </style>
