@@ -21,6 +21,27 @@
       height: 50px;
       background-color: #F8F8F8;
       border-bottom: 1px solid #dfdfdf;
+      font-size: 0;
+    }
+
+    .navbar .collapsed {
+      display: none;
+    }
+
+    .navbar .navbar-header a {
+      font-size: 1.2rem;
+    }
+
+    .navbar li a {
+      color: black;
+      background-color: #E7E7E7;
+      padding: 14px;
+      box-sizing: border-box;
+      line-height: 50px;
+    }
+
+    .navbar li a:hover {
+      /* border-bottom: .2rem solid #4e4e4e; */
     }
 
     .collapse li li {
@@ -30,6 +51,7 @@
     .container {
       width: 1200px;
       margin: auto;
+
     }
 
     h1 {
@@ -57,14 +79,18 @@
     }
 
     a {
+      font-size: 1rem;
       color: #23527C;
       opacity: .8;
       text-decoration: none;
     }
 
     a:hover {
+      /* opacity: 1; */
+    }
+
+    .lead+p a:hover {
       text-decoration: underline;
-      opacity: 1;
     }
 
     .footer {
@@ -74,7 +100,10 @@
       bottom: 0px;
       left: 0;
       right: 0;
-      /* left: 0px; */
+    }
+
+    .footer p {
+      font-size: 0.8rem;
     }
 
     body {
@@ -136,7 +165,7 @@
 
   <footer class="footer">
     <div class="container">
-      <p class="text-muted">Place sticky footer content here.</p>
+      <p class="text-muted">Place sticky footer content here.xxc</p>
     </div>
   </footer>
 

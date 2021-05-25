@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      background: top left url(https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/bg.jpg);
+    }
+
+    img {
+      height: 300px;
+      position: absolute;
+      left: 100%;
+      /* object-fit: cover; */
+    }
+
+    .re1 {
+      width: 400px;
+      height: 300px;
+      border: .5rem solid #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    input:nth-child(1):checked~div.re1 img:nth-child(1),
+    input:nth-child(2):checked~div.re1 img:nth-child(2),
+    input:nth-child(3):checked~div.re1 img:nth-child(3) {
+      left: 0;
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <input type="radio" name="a1" checked>
+    <input type="radio" name="a1">
+    <input type="radio" name="a1">
+    <div class="re1">
+      <img
+        src="https://drscdn.500px.org/photo/95729089/q%3D80_m%3D2000/v2?sig=2c663a90f55869c24ebfcbc1a739cea47c7953a1de61042b5e656d6f75205467"
+        alt="">
+      <img
+        src="https://drscdn.500px.org/photo/70051827/q%3D80_m%3D2000/v2?sig=a42c259cc5a836ef26bc124961c813ddb22bf0cb3d58e2d2dd04b72de3d05ea5"
+        alt="">
+      <img
+        src="https://drscdn.500px.org/photo/69329273/q%3D80_m%3D2000/v2?sig=0c6404d5ffaf448aa6edb02ecf3eef0ae0deb79ca0c1372e0198832931f70105"
+        alt="">
+      <img
+        src="https://drscdn.500px.org/photo/72069153/q%3D80_h%3D300/v2?sig=f5520db043829c21a0c8f1e2ec8a1edf342e38a227fcf063fa1d4ff44aabd953"
+        alt="">
+    </div>
+  </div>
+</body>
+
+</html>
