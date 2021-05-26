@@ -11,22 +11,70 @@
       margin: 0;
     }
 
+    .oald {
+      display: flex;
+      justify-content: space-between;
+    }
+
     .aside {
-      height: 100%;
-      width: 100px;
+      height: 100vh;
+      min-width: 120px;
       background-color: bisque;
+    }
+
+    .main {
+      height: 100vh;
+      flex-grow: 1;
+      background-color: darkcyan;
+      display: flex;
+      flex-flow: column;
+    }
+
+    .nav {
+      height: 100px;
+      background-color: brown;
+    }
+
+    .col1 {
+      overflow: auto;
+    }
+    .col2 {
+      height: 100vh;
+      min-width: 200px;
+      background-color: cornflowerblue;
+    }
+
+    .ee {
+      background-color: thistle;
     }
   </style>
 </head>
 
 <body>
-  <div class="aside"></div>
-  <div class="main">
-    <div class="nav"></div>
-    <div class="col1">lorem200</div>
+  <div class="oald">
+    <div class="aside">Lorem ipsum dolor sit amet consectetur adipisicing elit. A explicabo aperiam minus blanditiis
+      nisi dignissimos laboriosam maxime vero dolorem, eveniet officia in non nobis laborum mollitia repellat molestiae
+      beatae! Illum!</div>
+    <div class="main">
+      <div class="nav"></div>
+      <div class="col1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore atque eius sit culpa aperiam
+        modi ex corrupti neque, dicta recusandae architecto nobis ipsam eos quaerat. Facilis nesciunt ducimus voluptas
+        laborum temporibus reprehenderit accusamus hic omnis aliquam, totam accusantium rem. Sed, ad sapiente
+        repudiandae voluptates fugit fugiat qui itaque dicta debitis tempora quia quas quam culpa repellendus similique
+        enim sunt ab? Error accusamus beatae provident quibusdam molestias illo iste et fuga eum blanditiis? Tempore
+        voluptatibus fugit sed consequatur facere repudiandae, repellat odit ullam obcaecati quas, aut molestias ipsa
+        rem minus non explicabo dolor, voluptate ad maxime possimus eveniet modi quo. Cupiditate, temporibus deleniti ab
+        ad rerum nihil, ipsa debitis in quo ex nesciunt quidem sint aspernatur repellendus expedita, unde exercitationem
+        modi quibusdam. At veniam nulla corrupti molestiae! Ducimus, laboriosam amet numquam, est mollitia ea soluta
+        necessitatibus maiores error tempore atque rem debitis qui officiis excepturi. Assumenda, saepe vitae adipisci
+        inventore illo rem nihil officia libero tenetur illum quia eum omnis, sit error temporibus aliquam deleniti,
+        fugit natus. Iste, cupiditate laudantium perspiciatis numquam unde nihil eligendi adipisci eos illum at porro
+        dicta esse iusto molestiae odit ipsum aliquam impedit velit illo, blanditiis ea? Corporis odit, esse ratione vel
+        odio cum nemo nulla!</div>
+    </div>
+    <div class="col2"></div>
+    <div class="col2 ee"></div>
   </div>
-  <div class="col2"></div>
-  <div class="col2"></div>
 </body>
 
 </html>
