@@ -11,32 +11,111 @@
       margin: 0;
     }
 
-    .container {
+    body {
       width: 100vw;
       height: 100vh;
       background: top left url(https://tympanus.net/Tutorials/CSS3SlidingImagePanels/images/bg.jpg);
     }
 
-    img {
-      height: 300px;
-      position: absolute;
-      left: 100%;
-      /* object-fit: cover; */
+    .main {
+      width: 800px;
+      height: 560px;
+      margin: auto;
+      border: .5rem solid #fff;
+      line-height: 300px;
+      font-size: 0;
     }
 
-    .re1 {
-      width: 400px;
-      height: 300px;
-      border: .5rem solid #fff;
+    .re {
+      height: 100%;
+      width: 25%;
+      display: inline-block;
       position: relative;
       overflow: hidden;
     }
 
-    input:nth-child(1):checked~div.re1 img:nth-child(1),
-    input:nth-child(2):checked~div.re1 img:nth-child(2),
-    input:nth-child(3):checked~div.re1 img:nth-child(3) {
+    .re span {
+      height: 100%;
+      width: 100%;
+      display: inline-block;
+      background-size: cover;
+      position: absolute;
       left: 0;
+      transition: left 4s;
+    }
+
+    .e2,
+    .e3,
+    .e4 {
+      /* display: none; */
+    }
+
+    .container .re span:nth-of-type(1) {
+      background-image: url(https://drscdn.500px.org/photo/95729089/q%3D80_m%3D2000/v2?sig=2c663a90f55869c24ebfcbc1a739cea47c7953a1de61042b5e656d6f75205467);
+      left: 100%;
+    }
+
+    .container .re span:nth-of-type(2) {
+      background-image: url(https://drscdn.500px.org/photo/70051827/q=80_m=2000/v2?sig=a42c259cc5a836ef26bc124961c813ddb22bf0cb3d58e2d2dd04b72de3d05ea5);
+    }
+
+    .container .re span:nth-of-type(3) {
+      background-image: url(https://drscdn.500px.org/photo/69329273/q=80_m=2000/v2?sig=0c6404d5ffaf448aa6edb02ecf3eef0ae0deb79ca0c1372e0198832931f70105);
+    }
+
+    .container .re span:nth-of-type(4) {
+      background-image: url(https://drscdn.500px.org/photo/108610847/q%3D80_m%3D2000/v2?sig=6858d63f9f4d05dfb607c60ff9135447a1fe58e11eaae4d9643a28056e51d9f1);
+    }
+
+    .container .e1 span {
+      background-position: 0 0;
+    }
+
+    .container .e2 span {
+      background-position: -200px 0;
+    }
+
+    .container .e3 span {
+      background-position: -400px 0;
+    }
+
+    .container .e4 span {
+      background-position: -600px 0;
+    }
+
+    input:nth-of-type(1):checked~.main .re span:nth-of-type(1),
+    input:nth-of-type(2):checked~.main .re span:nth-of-type(2),
+    input:nth-of-type(3):checked~.main .re span:nth-of-type(3),
+    input:nth-of-type(4):checked~.main .re span:nth-of-type(4) {
+      left: 0;
+      z-index: 6;
+    }
+
+    input:nth-of-type(1):checked~.main .re span:nth-of-type(4),
+    input:nth-of-type(2):checked~.main .re span:nth-of-type(1),
+    input:nth-of-type(3):checked~.main .re span:nth-of-type(2),
+    input:nth-of-type(4):checked~.main .re span:nth-of-type(3) {
+      left: -100%;
+      z-index: 4;
+    }
+
+    input:nth-of-type(1):checked~.main .re :nth-of-type(2),
+    input:nth-of-type(1):checked~.main .re :nth-of-type(3),
+    input:nth-of-type(2):checked~.main .re :nth-of-type(3),
+    input:nth-of-type(2):checked~.main .re :nth-of-type(4),
+    input:nth-of-type(3):checked~.main .re :nth-of-type(1),
+    input:nth-of-type(3):checked~.main .re :nth-of-type(4),
+    input:nth-of-type(4):checked~.main .re :nth-of-type(1),
+    input:nth-of-type(4):checked~.main .re :nth-of-type(2) {
+      left: 100%;
       z-index: 2;
+    }
+
+    input {
+      z-index: 3;
+      position: relative;
+      bottom: 0;
+      width: 24%;
     }
   </style>
 </head>
@@ -46,19 +125,32 @@
     <input type="radio" name="a1" checked>
     <input type="radio" name="a1">
     <input type="radio" name="a1">
-    <div class="re1">
-      <img
-        src="https://drscdn.500px.org/photo/95729089/q%3D80_m%3D2000/v2?sig=2c663a90f55869c24ebfcbc1a739cea47c7953a1de61042b5e656d6f75205467"
-        alt="">
-      <img
-        src="https://drscdn.500px.org/photo/70051827/q%3D80_m%3D2000/v2?sig=a42c259cc5a836ef26bc124961c813ddb22bf0cb3d58e2d2dd04b72de3d05ea5"
-        alt="">
-      <img
-        src="https://drscdn.500px.org/photo/69329273/q%3D80_m%3D2000/v2?sig=0c6404d5ffaf448aa6edb02ecf3eef0ae0deb79ca0c1372e0198832931f70105"
-        alt="">
-      <img
-        src="https://drscdn.500px.org/photo/72069153/q%3D80_h%3D300/v2?sig=f5520db043829c21a0c8f1e2ec8a1edf342e38a227fcf063fa1d4ff44aabd953"
-        alt="">
+    <input type="radio" name="a1">
+    <div class="main">
+      <div class="re e1">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="re e2">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="re e3">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="re e4">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </div>
 </body>

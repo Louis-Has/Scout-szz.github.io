@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+}
+
+.container {
+  width: 1200px;
+  margin: auto;
+}
+
+.header .topbar {
+  background-color: #333333;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar li {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: #bebebe;
+  margin: 0 0.1rem;
+}
+
+ul li:not(:first-child) {
+  border-left: 1px solid #bebebe;
+  padding-left: 0.5rem;
+}
