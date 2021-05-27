@@ -3,7 +3,7 @@
 }
 
 .container {
-  width: 1300px;
+  width: 1230px;
   margin: auto;
 }
 
@@ -17,6 +17,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.topbar ul {
+  padding: 0;
 }
 
 .topbar ul li {
@@ -34,6 +38,10 @@
 
 .topbar ul li:hover {
   opacity: 1;
+}
+
+.topbar .fa-shopping-cart {
+  font-size: 1rem;
 }
 
 /* header-menu */
@@ -66,6 +74,11 @@
 
 /* home */
 
+.home {
+  height: 462px;
+  position: relative;
+}
+
 .home ul {
   height: 100%;
   width: 12%;
@@ -80,6 +93,27 @@
   justify-content: space-evenly;
 }
 
-.home img {
-  width: 1300px;
+.home .banner {
+  height: 100%;
 }
+
+.home img {
+  height: 100%;
+}
+
+/* home-banner */
+
+.home-banner {
+  height: 180px;
+  margin: 10px 0 20px;
+  background-color: gray;
+}
+
+.home-banner div {
+  height: 100%;
+}
+
+.home-banner div img {
+  height: 100%;
+}
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/miao/font-awesome-4.7.0/css/font-awesome.css ">
+  <title>Document</title>
+  <style>
+    /* tr1 */
+    .tr1 {
+      display: flex;
+      flex-flow: row-reverse;
+      justify-content: flex-end;
+    }
+
+    .tr1 span:hover:before,
+    .tr1 span:hover~:before {
+      content: "\f005";
+    }
+
+    /* tr2 */
+
+    .tr2:hover span:before {
+      content: "\f005";
+    }
+
+    .tr2 span:hover~::before {
+      content: "\f006";
+    }
+
+    .tr2 {
+      font-size: 0;
+    }
+    
+    .tr2 span {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="tr1">
+    <span class="fa fa-fw fa-star-o"></span>
+    <span class="fa fa-fw fa-star-o"></span>
+    <span class="fa fa-fw fa-star-o"></span>
+    <span class="fa fa-fw fa-star-o"></span>
+    <span class="fa fa-fw fa-star-o"></span>
+  </div>
+
+  <div class="tr2">
+    <span class="fa fa-fw fa-star-o"></span>
+    <span class="fa fa-fw fa-star-o"></span>
+    <span class="fa fa-fw fa-star-o"></span>
+    <span class="fa fa-fw fa-star-o"></span>
+    <span class="fa fa-fw fa-star-o"></span>
+  </div>
+
+</body>
+
+</html>
