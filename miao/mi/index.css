@@ -19,8 +19,9 @@
   justify-content: space-between;
 }
 
-.topbar ul {
+ul {
   padding: 0;
+  list-style-type: none;
 }
 
 .topbar ul li {
@@ -79,13 +80,12 @@
   position: relative;
 }
 
-.home ul {
+.home > ul {
   height: 100%;
-  width: 12%;
+  width: 160px;
   font-size: 0.9rem;
   color: #ffffff;
   background-color: #75757585;
-  list-style-type: none;
   padding: 0 34px;
   position: absolute;
   display: flex;
@@ -101,12 +101,52 @@
   height: 100%;
 }
 
+.home ul ul {
+  display: none;
+}
+
+.home ul li/* :hover */ ul {
+  color: #000;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+  height: 100%;
+  position: absolute;
+  left: 228px;
+  top: 0px;
+  display: block;
+  width: 1003px;
+}
+
+.home ul ul li {
+  height: calc(100% / 6);
+  width: 240px;
+  /* border: 1px solid; */
+  box-sizing: border-box;
+  /* 标志用delete */
+}
+
+.home ul ul li:nth-of-type(n + 7) {
+  margin-left: 240px;
+}
+
+.home ul ul li:nth-of-type(n + 13) {
+  margin-left: 480px;
+}
+
+.home ul ul li:nth-of-type(n + 19) {
+  margin-left: 720px;
+}
+
+.home ul ul li:nth-of-type(6n + 7) {
+  margin-top: -462px;
+}
 /* home-banner */
 
 .home-banner {
-  height: 180px;
-  margin: 10px 0 20px;
-  background-color: gray;
+  height: 170px;
+  margin: 16px 0 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .home-banner div {
@@ -117,3 +157,59 @@
   height: 100%;
 }
 
+.home-banner .banner0 ul {
+  background-color: #5f5750;
+  width: 230px;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.home-banner .banner0 ul li {
+  width: 32%;
+  position: relative;
+}
+
+.home-banner .banner0 ul li > span {
+  display: block;
+  color: #ffffff;
+  opacity: 0.8;
+  font-size: 0.8rem;
+  margin: 16px 0;
+}
+
+.home-banner span.fa {
+  display: block;
+  font-size: 1.8rem;
+}
+
+.home-banner .banner0 ul li :hover {
+  opacity: 1;
+}
+
+.home-banner .banner0 ul li::before {
+  background-color: #665e57;
+  content: "";
+  width: 80%;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.home-banner .banner0 ul li::after {
+  background-color: #665e57;
+  content: "";
+  width: 1px;
+  height: 80%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
