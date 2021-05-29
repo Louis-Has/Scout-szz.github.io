@@ -24,6 +24,11 @@ ul {
   list-style-type: none;
 }
 
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 .topbar ul li {
   display: inline-block;
   font-size: 0.8rem;
@@ -82,15 +87,12 @@ ul {
 
 .home > ul {
   height: 100%;
-  width: 160px;
-  font-size: 0.9rem;
-  color: #ffffff;
+  width: 230px;
   background-color: #75757585;
-  padding: 0 34px;
   position: absolute;
   display: flex;
   flex-flow: column;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .home .banner {
@@ -105,9 +107,25 @@ ul {
   display: none;
 }
 
-.home ul li/* :hover */ ul {
-  color: #000;
+.home > ul > li {
+  height: calc(100% / 11);
+  display: flex;
+  align-items: center;
+}
+
+.home > ul > li > a {
+  font-size: 14px;
+  padding: 0 28px;
+}
+
+.home > ul > li:hover {
+  background-color: #ff6700;
+}
+
+.home ul li:hover ul {
   background-color: #fff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
   height: 100%;
   position: absolute;
@@ -120,9 +138,18 @@ ul {
 .home ul ul li {
   height: calc(100% / 6);
   width: 240px;
-  /* border: 1px solid; */
   box-sizing: border-box;
-  /* 标志用delete */
+  padding: 18px;
+}
+
+.home ul ul li a {
+  color: #000;
+}
+
+.home ul ul li img {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
 }
 
 .home ul ul li:nth-of-type(n + 7) {
@@ -140,6 +167,7 @@ ul {
 .home ul ul li:nth-of-type(6n + 7) {
   margin-top: -462px;
 }
+
 /* home-banner */
 
 .home-banner {
