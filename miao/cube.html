@@ -1,10 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>cube</title>
+    <style>
+        body {
+            background-color: #B2D3B2;
+            transform-style: preserve-3d;
+            transform: perspective(3600px);
+        }
+
+        .cube {
+            margin-top: 300px;
+        }
+
+        .t4 {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            /* transition: 2s; */
+            animation: cube 80s linear infinite;
+            transform-style: preserve-3d;
+            transform-origin: 100px 100px 100px;
+        }
+
+        @keyframes cube {
+            from {
+                transform: rotateX(30deg) rotateY(30deg) rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateX(3600deg) rotateY(2100deg) rotateZ(1800deg);
+            }
+        }
+
+        .t4:hover {
+            animation-play-state: paused;
+        }
+
+        .t4 div {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            animation: shadow 3s linear infinite alternate ;
+        }
+
+        @keyframes shadow {
+            from {
+                box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.4);
+            }
+
+            to {
+                box-shadow: 0 0 0 80px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        .t41 {
+            background-color: #71055D60;
+            transform: rotateY(-90deg);
+            transform-origin: left;
+        }
+
+        .t42 {
+            background-color: #14A90960;
+            transform: rotateX(90deg);
+            transform-origin: top;
+        }
+
+        .t43 {
+            background-color: #A1155D60;
+            transform: rotateY(90deg);
+            transform-origin: right;
+        }
+
+        .t44 {
+            background-color: #081A6460;
+            transform: rotateX(-90deg);
+            transform-origin: bottom;
+        }
+
+        .t45 {
+            background-color: #265DB260;
+            transform: translateZ(200px);
+        }
+
+        .t46 {
+            background-color: #14a97560;
+        }
+    </style>
 </head>
+
 <body>
-$END$
+    <div class="cube">
+        <div class="t4">
+            <div class="t41"></div>
+            <div class="t42"></div>
+            <div class="t43"></div>
+            <div class="t44"></div>
+            <div class="t45"></div>
+            <div class="t46"></div>
+        </div>
+    </div>
 </body>
+
 </html>
