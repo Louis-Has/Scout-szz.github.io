@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>smile*3</title>
+  <style>
+    .rr {
+      width: 80px;
+      height: 80px;
+      border: 1px solid;
+      margin: auto;
+    }
+
+    .rr img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .rr:hover,
+    .rr:hover img {
+      animation-play-state: paused;
+    }
+
+    /* 内外两个rotate */
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .r1 {
+      animation: spin 5s linear infinite;
+      transform-origin: right bottom;
+    }
+
+    .r1 img {
+      animation: spin 5s linear infinite reverse;
+    }
+
+    /* transform*3 */
+    @keyframes con {
+      from {
+        transform: rotate(0deg) translate(100px) rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg) translate(100px) rotate(-360deg);
+      }
+    }
+
+    .r2 {
+      animation: con 5s linear infinite reverse;
+    }
+
+    /* bezier拟合 */
+    @keyframes v {
+      from {
+        left: 0;
+      }
+
+      to {
+        left: 100px;
+      }
+    }
+
+    @keyframes h {
+      from {
+        top: 0;
+      }
+
+      to {
+        top: 100px;
+      }
+    }
+
+    .r3 {
+      position: relative;
+      animation: v 1s cubic-bezier(.36, 0, .64, 1) infinite alternate,
+        h 1s -1.5s cubic-bezier(.36, 0, .64, 1) infinite alternate;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="rr r1">
+    <img src="http://www.wuqingying.com/uploads/allimg/181115/1625504213-0.jpg" alt="">
+  </div>
+
+  <div class="rr r2">
+    <img src="http://www.wuqingying.com/uploads/allimg/181115/1625504213-0.jpg" alt="">
+  </div>
+
+  <div class="rr r3">
+    <img src="http://www.wuqingying.com/uploads/allimg/181115/1625504213-0.jpg" alt="">
+  </div>
+
+
+</body>
+
+</html>

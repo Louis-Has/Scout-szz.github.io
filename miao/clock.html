@@ -5,17 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>clock</title>
   <style>
     .clock {
       width: 360px;
       height: 360px;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
+      position: relative;
+      margin: 100px auto;
     }
 
     .panel {
@@ -26,26 +22,17 @@
     }
 
     .panel div,
-    .poinxter {
+    .pointer *,
+    .pointer * * {
       position: absolute;
-      /* left: 50%; */
-      /* top: 50%; */
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
+      left: 50%;
+      top: 50%;
       font-size: 24px;
+      transform: translate(-50%, -50%);
     }
 
     .panel div:nth-child(1) {
       transform: translate(-50%, -50%)rotate(calc(30deg * 1))translateY(-150px)rotate(calc(-30deg * 1));
-    }
-
-
-
-    .panel div:first-child:hover {
-      animation: clock 8s linear;
     }
 
     .panel div:nth-child(2) {
@@ -92,24 +79,143 @@
       transform: translate(-50%, -50%)rotate(calc(30deg * 12))translateY(-150px)rotate(calc(-30deg * 12));
     }
 
-    .pointer-s {
-      width: 0px;
-      height: 0px;
-      border: 2px solid transparent;
-      border-left: 150px solid #F08080;
-      /* transform: translate(-50%, -50%); */
-      /* animation: clock 6s linear; */
-      transform-origin: 0px;
+    .pointer .point {
+      width: 12px;
+      height: 12px;
+      border-radius: 20rem;
+      background-color: rgb(80, 80, 80);
+    }
+
+    .pointer .pointer-s {
+      width: 3px;
+      height: 160px;
+      background-color: #F08080;
+      border-radius: 50% 50% 0 0;
+      animation: clock 60s steps(60, end) infinite;
+      transform-origin: center 140px;
+    }
+
+    .pointer .shake-s {
+      margin-top: -60px;
+      animation: shake 1s infinite;
+      transform-origin: center 80px;
+    }
+
+    .clock:hover .pointer-s {
+      animation-play-state: paused;
     }
 
     @keyframes clock {
       from {
-        transform: rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
       }
 
       to {
-        transform: rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg);
       }
+    }
+
+    @keyframes shake {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      5% {
+        transform: rotate(2deg);
+      }
+
+      10% {
+        transform: rotate(0deg);
+      }
+
+      15% {
+        transform: rotate(-1deg);
+      }
+
+      20% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    @keyframes shake-min {
+      0% {
+        transform: rotate(0);
+      }
+
+      0.125% {
+        transform: rotate(3deg);
+      }
+
+      0.25% {
+        transform: rotate(0);
+      }
+
+      0.375% {
+        transform: rotate(-1.5deg);
+      }
+
+      0.5% {
+        transform: rotate(0);
+      }
+
+      100% {
+        transform: rotate(0);
+      }
+    }
+
+    .pointer .shake-min {
+      animation: shake-min 60s infinite;
+      transform-origin: center 60px;
+      margin-top: -60px;
+    }
+
+    .pointer .pointer-min {
+      width: 5px;
+      height: 120px;
+      background-color: #333333;
+      border-radius: 50% 50% 0 0/20% 20% 0 0;
+      animation: clock 3600s -180s steps(60) infinite;
+      transform-origin: center bottom;
+    }
+
+    .pointer .pointer-hour {
+      width: 8px;
+      height: 110px;
+      background-color: #333;
+      border-radius: 50% 50% 0 0/20% 20% 0 0;
+      margin-top: -55px;
+    }
+  </style>
+  <style>
+    .panel-0 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
+
+    .panel-0 div {
+      height: 10px;
+      width: 170px;
+      /* background-color: rgba(117, 117, 117, 0.432); */
+      transform: rotate(6deg);
+      transform-origin: left center;
+      margin-top: -5px;
+      text-align: right;
+    }
+
+    .panel-0 div::after {
+      content: "";
+      width: 5px;
+      height: 2px;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      top: 4px;
+      background-color: black;
     }
   </style>
 </head>
@@ -117,6 +223,250 @@
 <body>
   <main>
     <div class="clock">
+      <div class="panel-0">
+        <div>
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <div>
+                      <div>
+                        <div>
+                          <div>
+                            <div>
+                              <div>
+                                <div>
+                                  <div>
+                                    <div>
+                                      <div>
+                                        <div>
+                                          <div>
+                                            <div>
+                                              <div>
+                                                <div>
+                                                  <div>
+                                                    <div>
+                                                      <div>
+                                                        <div>
+                                                          <div>
+                                                            <div>
+                                                              <div>
+                                                                <div>
+                                                                  <div>
+                                                                    <div>
+                                                                      <div>
+                                                                        <div>
+                                                                          <div>
+                                                                            <div>
+                                                                              <div>
+                                                                                <div>
+                                                                                  <div>
+                                                                                    <div>
+                                                                                      <div>
+                                                                                        <div>
+                                                                                          <div>
+                                                                                            <div>
+                                                                                              <div>
+                                                                                                <div>
+                                                                                                  <div>
+                                                                                                    <div>
+                                                                                                      <div>
+                                                                                                        <div>
+                                                                                                          <div>
+                                                                                                            <div>
+                                                                                                              <div>
+                                                                                                                <div>
+                                                                                                                  <div>
+                                                                                                                    <div>
+                                                                                                                      <div>
+                                                                                                                        <div>
+                                                                                                                          <div>
+                                                                                                                            <div>
+                                                                                                                              <div>
+                                                                                                                              </div>
+                                                                                                                            </div>
+                                                                                                                          </div>
+                                                                                                                        </div>
+                                                                                                                      </div>
+                                                                                                                    </div>
+                                                                                                                  </div>
+                                                                                                                </div>
+                                                                                                              </div>
+                                                                                                            </div>
+                                                                                                          </div>
+                                                                                                        </div>
+                                                                                                      </div>
+                                                                                                    </div>
+                                                                                                  </div>
+                                                                                                </div>
+                                                                                              </div>
+                                                                                            </div>
+                                                                                          </div>
+                                                                                        </div>
+                                                                                      </div>
+                                                                                    </div>
+                                                                                  </div>
+                                                                                </div>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-1">
+        <div>
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <div>
+                      <div>
+                        <div>
+                          <div>
+                            <div>
+                              <div>
+                                <div>
+                                  <div>
+                                    <div>
+                                      <div>
+                                        <div>
+                                          <div>
+                                            <div>
+                                              <div>
+                                                <div>
+                                                  <div>
+                                                    <div>
+                                                      <div>
+                                                        <div>
+                                                          <div>
+                                                            <div>
+                                                              <div>
+                                                                <div>
+                                                                  <div>
+                                                                    <div>
+                                                                      <div>
+                                                                        <div>
+                                                                          <div>
+                                                                            <div>
+                                                                              <div>
+                                                                                <div>
+                                                                                  <div>
+                                                                                    <div>
+                                                                                      <div>
+                                                                                        <div>
+                                                                                          <div>
+                                                                                            <div>
+                                                                                              <div>
+                                                                                                <div>
+                                                                                                  <div>
+                                                                                                    <div>
+                                                                                                      <div>
+                                                                                                        <div>
+                                                                                                          <div>
+                                                                                                            <div>
+                                                                                                              <div>
+                                                                                                                <div>
+                                                                                                                  <div>
+                                                                                                                    <div>
+                                                                                                                      <div>
+                                                                                                                        <div>
+                                                                                                                          <div>
+                                                                                                                            <div>
+                                                                                                                              <div>
+                                                                                                                              </div>
+                                                                                                                            </div>
+                                                                                                                          </div>
+                                                                                                                        </div>
+                                                                                                                      </div>
+                                                                                                                    </div>
+                                                                                                                  </div>
+                                                                                                                </div>
+                                                                                                              </div>
+                                                                                                            </div>
+                                                                                                          </div>
+                                                                                                        </div>
+                                                                                                      </div>
+                                                                                                    </div>
+                                                                                                  </div>
+                                                                                                </div>
+                                                                                              </div>
+                                                                                            </div>
+                                                                                          </div>
+                                                                                        </div>
+                                                                                      </div>
+                                                                                    </div>
+                                                                                  </div>
+                                                                                </div>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="panel">
         <div>1</div>
         <div>2</div>
@@ -132,9 +482,18 @@
         <div>12</div>
       </div>
       <div class="pointer">
-        <div class="pointer-s"></div>
-        <div class="pointer-min"></div>
-        <div class="pointer-hour"></div>
+        <div class="">
+          <div class="point"></div>
+        </div>
+        <div class="shake-no">
+          <div class="pointer-hour"></div>
+        </div>
+        <div class="shake-min">
+          <div class="pointer-min"></div>
+        </div>
+        <div class="shake-s">
+          <div class="pointer-s"></div>
+        </div>
       </div>
     </div>
   </main>
