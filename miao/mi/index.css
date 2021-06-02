@@ -133,6 +133,11 @@ a {
   color: #ff6700;
 }
 
+.header-menu ul ul li {
+  display: inline-block;
+  margin: 36px auto;
+}
+
 .header-menu ul ul {
   height: 0px;
   width: 100%;
@@ -142,8 +147,6 @@ a {
   left: 50%;
   right: 50%;
   transform: translatex(-50%);
-  display: flex;
-  justify-content: space-evenly;
   background-color: #fff;
   overflow: hidden;
   border-top: 1px solid #e0e0e0;
@@ -154,7 +157,6 @@ a {
 .header-menu ul:hover ul {
   height: 230px;
   transition: height 0.5s, visibility 0s;
-  /* transition: height 0.5s; */
 }
 
 .header-menu ul li:hover ul {
@@ -417,7 +419,7 @@ main span.del {
   font-size: 28px;
   color: #ffffff;
   background-color: #605751;
-  padding: 12px;
+  padding: 8px;
 }
 
 .counter span {
@@ -452,29 +454,93 @@ main .banner img {
 .content-2 > div:first-child {
   float: left;
   margin-right: 16px;
+  transition: 0.2s;
 }
 
 .content-2 div:first-child img {
   width: 234px;
-  height: 614px;
+  height: 615px;
 }
 
-.content-2 .shop-1 {
+/* transform*3 */
+
+.content-2 div:first-child:hover,
+.container .shop-1 div:not(.shop-3):hover,
+.content-3 .shop-2 img:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.container .shop-1 {
+  width: 980px;
+  height: 615px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  align-content: space-between;
 }
 
-.content-2 .shop-1 div {
+.container .shop-1 > div {
   width: 234px;
   height: 300px;
   display: flex;
   flex-flow: column;
+  justify-content: center;
   align-items: center;
+  align-content: space-between;
   background-color: #fff;
+  transition: 0.2s;
 }
 
-.content-2 .shop-1 div img {
+.container .shop-1 div img {
   width: 160px;
   height: 160px;
+}
+
+/* content-3 */
+
+.content-3 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-3 .shop-2 {
+  height: 615px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.content-3 .shop-2 img {
+  width: 234px;
+  height: 300px;
+  transition: 0.2s;
+}
+
+.content-3 .shop-1 .shop-3 {
+  background-color: transparent;
+  justify-content: space-between;
+}
+
+.content-3 .shop-3 div {
+  width: 100%;
+  height: 140px;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 36px 28px;
+}
+
+.content-3 .shop-3 div img {
+  width: 80px;
+  height: 80px;
+  float: right;
+}
+
+.content-3 .shop-3 div a {
+  display: block;
+  margin: 0;
+}
+
+.content-3 a.more {
+  font-size: 18px;
 }
