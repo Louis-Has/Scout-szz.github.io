@@ -61,6 +61,44 @@ a {
   opacity: 1;
 }
 
+.topbar .nav ul .QRcode {
+  position: absolute;
+  z-index: 2;
+  line-height: normal;
+  background-color: #fff;
+  width: 124px;
+  text-align: center;
+  box-shadow: 0px 1px 5px #aaa;
+  margin-left: -40px;
+  margin-top: 2px;
+}
+
+.topbar .nav ul li:hover .QRcode {
+  opacity: 1;
+}
+
+.topbar .nav ul .QRcode .tr {
+  width: 0px;
+  border: 10px solid transparent;
+  border-bottom-color: #fff;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+}
+
+.topbar .nav ul .QRcode img {
+  height: 90px;
+  margin-top: 18px;
+}
+
+.topbar .nav ul .QRcode p {
+  color: #000;
+  font-size: 14px;
+  margin: 12px;
+}
+
 .topbar .loginbar li:last-child a {
   display: inline-block;
   padding: 4px 24px 4px 8px;
@@ -117,7 +155,7 @@ a {
   margin-right: 60px;
 }
 
-.header-menu .header-nav ul {
+.header-menu .header-nav > ul {
   display: flex;
   line-height: 90px;
 }
