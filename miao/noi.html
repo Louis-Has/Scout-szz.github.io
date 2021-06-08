@@ -12,8 +12,8 @@
 <script id="ch0103/02">
 
   var a = Number(prompt('a的值为'))
-  var a = Number(prompt('b的值为'))
-  var a = Number(prompt('c的值为'))
+  var b = Number(prompt('b的值为'))
+  var c = Number(prompt('c的值为'))
 
   var y = (a + b) * c
 
@@ -23,8 +23,8 @@
 <script id="ch0103/03">
 
   var a = Number(prompt('a的值为'))
-  var a = Number(prompt('b的值为'))
-  var a = Number(prompt('c的值为'))
+  var b = Number(prompt('b的值为'))
+  var c = Number(prompt('c的值为'))
 
   var y = (a + b) / c
 
@@ -59,7 +59,7 @@
   var a = Number(prompt('a的值为'))
   var b = Number(prompt('b的值为'))
 
-  var y = String(b / a * 100) + '%'
+  var y = (String(b / a * 100)).fixed(3) + '%'
 
   console.log(y)
 
@@ -73,7 +73,7 @@
   var d = Number(prompt('d的值为'))
   var x = Number(prompt('x的值为'))
 
-  var y = a * x * x * x + b * x * x + c * x + d
+  var y = (a * x * x * x + b * x * x + c * x + d).fixed(7)
 
   console.log(y)
 
@@ -93,7 +93,7 @@
 
   var a = Number(prompt('a的值为'))
 
-  var y = a * 2
+  var y = (a * 2).fixed(4)
 
   var x = (2 * a * Math.PI).toFixed(4)
 
@@ -139,7 +139,7 @@
 
   var a = Number(prompt('a的值为'))
 
-  var y = a % 10 * 100 + (a % 100 - a % 10) + (a - a % 100) / 100
+  var y = String(a % 10) + String((a % 100 - a % 10) / 10) + String((a - a % 100) / 100)
 
   console.log(y)
 
@@ -257,5 +257,5 @@
   var y = a >= 0 ? a : -a
 
   console.log(y);
-  
+
 </script>
