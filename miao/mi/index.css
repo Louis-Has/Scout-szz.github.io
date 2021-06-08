@@ -73,8 +73,14 @@ a {
   margin-top: 2px;
 }
 
+.topbar .QRcode {
+  /* height: 0; */
+  overflow: hidden;
+}
 .topbar .nav ul li:hover .QRcode {
   opacity: 1;
+  height: fit-content;
+  /* transition: height 0.4s; */
 }
 
 .topbar .nav ul .QRcode .tr {

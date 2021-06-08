@@ -1,0 +1,261 @@
+<script id="ch0103/01">
+
+  var a = Number(prompt('a的值为'))
+  var b = Number(prompt('b的值为'))
+
+  var y = a + b
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/02">
+
+  var a = Number(prompt('a的值为'))
+  var a = Number(prompt('b的值为'))
+  var a = Number(prompt('c的值为'))
+
+  var y = (a + b) * c
+
+  console.log(y);
+</script>
+
+<script id="ch0103/03">
+
+  var a = Number(prompt('a的值为'))
+  var a = Number(prompt('b的值为'))
+  var a = Number(prompt('c的值为'))
+
+  var y = (a + b) / c
+
+  console.log(y);
+</script>
+
+<script id="ch0103/04">
+
+  var a = Number(prompt('a的值为'))
+  var b = Number(prompt('b的值为'))
+
+  var y = (a - a % b) / b
+  var z = a % b
+
+  console.log(y, z)
+
+</script>
+
+<script id="ch0103/05">
+
+  var a = Number(prompt('a的值为'))
+  var b = Number(prompt('b的值为'))
+
+  var y = (a / b).toFixed(9)
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/06">
+
+  var a = Number(prompt('a的值为'))
+  var b = Number(prompt('b的值为'))
+
+  var y = String(b / a * 100) + '%'
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/07">
+
+  var a = Number(prompt('a的值为'))
+  var b = Number(prompt('b的值为'))
+  var c = Number(prompt('c的值为'))
+  var d = Number(prompt('d的值为'))
+  var x = Number(prompt('x的值为'))
+
+  var y = a * x * x * x + b * x * x + c * x + d
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/08">
+
+  var a = Number(prompt('a的值为'))
+
+  var y = (5 * (a - 32) / 9).toFixed(5)
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/09">
+
+  var a = Number(prompt('a的值为'))
+
+  var y = a * 2
+
+  var x = (2 * a * Math.PI).toFixed(4)
+
+  var z = (a * a * Math.PI).toFixed(4)
+
+  console.log(y, x, z)
+
+</script>
+
+<script id="ch0103/10">
+
+  var a = Number(prompt('a的值为'))
+  var b = Number(prompt('b的值为'))
+
+  var y = (1 / (1 / a + 1 / b)).toFixed(2)
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/11">
+
+  var a = Number(prompt('a的值为'))
+  var b = Number(prompt('b的值为'))
+
+  var y = Number((a % b).toFixed(9))
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/12">
+
+  var a = Number(prompt('a的值为'))
+
+  var y = (a * a * a * 3.14 * 4 / 3).toFixed(2)
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/13">
+
+  var a = Number(prompt('a的值为'))
+
+  var y = a % 10 * 100 + (a % 100 - a % 10) + (a - a % 100) / 100
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/14">
+
+  var a = Number(prompt('a的值为'))
+  var b = Number(prompt('b的值为'))
+
+  var y = 20 / (3.14159 * a * b * b / 1000)
+
+  var y = y % 1 === 0 ? y : y + 1 - y % 1
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/15">
+
+  var a = Number(prompt('a的值为'))
+  var b = Number(prompt('b的值为'))
+  var c = Number(prompt('c的值为'))
+
+  var y = a - Math.ceil(c / b)
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/16">
+
+  var a = Number(prompt('A的x坐标'))
+  var b = Number(prompt('A的y坐标'))
+  var c = Number(prompt('B的x坐标'))
+  var d = Number(prompt('B的y坐标'))
+
+  var y = Math.sqrt((a - c) * (a - c) + (b - d) * (b - d))
+
+  var y = y.toFixed(3)
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/17">
+
+  var a = Number(prompt('A的x坐标'))
+  var b = Number(prompt('A的y坐标'))
+  var c = Number(prompt('B的x坐标'))
+  var d = Number(prompt('B的y坐标'))
+  var e = Number(prompt('C的x坐标'))
+  var f = Number(prompt('C的y坐标'))
+
+  var y = (a * (d - f) + c * (f - b) + e * (b - d)) / 2
+
+  var y = y.toFixed(2)
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/18">
+
+  var a = Number(prompt('A的x坐标'))
+  var b = Number(prompt('A的y坐标'))
+  var c = Number(prompt('B的x坐标'))
+
+  var y = a + (b - a) * (c - a)
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/19">
+
+  var a = prompt('A的x坐标')
+
+  var y = a.split(" ").join("")
+
+  var y = y % 10 * (y - y % 10) / 10
+
+  console.log(y)
+
+</script>
+
+<script id="ch0103/20">
+
+  var a = Number(prompt('A的x坐标'))
+
+  var y = 2 ** a
+
+  console.log(y)
+
+</script>
+
+<script id="ch0104/01">
+
+  var a = Number(prompt('A的x坐标'))
+
+  if (a < 0) {
+    console.log(negative)
+  } else if (a === 0) {
+    console.log(zero)
+  } else (a > 0) {
+    console.log(positive)
+  }
+
+</script>
+
+<script id="ch0104/02">
+
+  var a = Number(prompt('A的x坐标'))
+
+  var y = a >= 0 ? a : -a
+
+  console.log(y);
+  
+</script>
