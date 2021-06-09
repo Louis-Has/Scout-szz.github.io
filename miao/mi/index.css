@@ -61,7 +61,7 @@ a {
   opacity: 1;
 }
 
-.topbar .nav ul .QRcode {
+.topbar .QRcode {
   position: absolute;
   z-index: 2;
   line-height: normal;
@@ -73,7 +73,7 @@ a {
   margin-top: 2px;
 }
 
-.topbar .QRcode {
+.topbar .QRcode td {
   /* height: 0; */
   overflow: hidden;
 }
