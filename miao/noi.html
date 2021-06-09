@@ -344,7 +344,7 @@
   var a = prompt('a=?')
 
   if (a % 3 === 0 && a % 5 === 0) {
-    var y = 'YES '
+    var y = 'YES'
   } else {
     var y = 'NO'
   }
@@ -369,7 +369,7 @@
 
     var c = a % 7 === 0 ? '7' : ''
 
-    var y = z + x + c
+    var y = z + ' ' + x + ' ' + c
 
   }
 
@@ -530,8 +530,8 @@
 
 <script id="ch0104/19">
 
-  var a = prompt('a=?')
-  var b = prompt('b=?')
+  var a = +prompt('a=?')
+  var b = +prompt('b=?')
   var c = prompt('c=?')
 
   if (b === 0) {
@@ -585,15 +585,13 @@
   } else if (br < 0) {
     var sol01 = Math.sqrt(-br) / 2 / a
 
-    var sol02 = -Math.sqrt(-br) / 2 / a
-
     var sol00 = -b / 2 / a
 
     if (a > 0) {
-      var y = 'x1=' + sol00.toFixed(5) + '+' + sol01.toFixed(5) + 'i;x2=' + sol00.toFixed(5) + '+' + sol02.toFixed(5) + 'i'
+      var y = 'x1=' + sol00.toFixed(5) + '+' + sol01.toFixed(5) + 'i;x2=' + sol00.toFixed(5) + '-' + sol01.toFixed(5) + 'i'
 
     } else {
-      var y = 'x1=' + sol00.toFixed(5) + '+' + sol02.toFixed(5) + 'i;x2=' + sol00.toFixed(5) + '+' + sol01.toFixed(5) + 'i'
+      var y = 'x1=' + sol00.toFixed(5) + '+' + (-sol01).toFixed(5) + 'i;x2=' + sol00.toFixed(5) + '-' + (-sol01).toFixed(5) + 'i'
 
     }
 
