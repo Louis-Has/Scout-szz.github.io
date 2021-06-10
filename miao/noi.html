@@ -432,11 +432,11 @@
 
   var a = prompt('a=?')
 
-  if (0 <= a < 5) {
+  if (0 <= a && a < 5) {
     var y = -a + 2.5
-  } else if (5 <= a < 10) {
+  } else if (5 <= a && a < 10) {
     var y = 2 - 1.5 * (a - 3) * (a - 3)
-  } else if (10 <= a < 20) {
+  } else if (10 <= a && a < 20) {
     var y = a / 2 - 1.5
   } else {
     var y = '请输入0-20的值'
@@ -473,11 +473,13 @@
   var b = prompt('b=?')
   var c = prompt('c=?')
 
-  if (a >= b && a >= c) {
-    var y = a
-  } else if (b >= a && b >= c) {
+  var y = a
+
+  if (b > y) {
     var y = b
-  } else if (c >= a && c >= b) {
+  }
+
+  if (c > y) {
     var y = c
   }
 
@@ -520,7 +522,7 @@
   var a = prompt('a=?')
   var b = prompt('b=?')
 
-  if (-1 <= a <= 1 && -1 <= b <= 1) {
+  if (-1 <= a && a <= 1 && -1 <= b && b <= 1) {
     var y = 'yes'
   } else {
     var y = 'no'
@@ -624,10 +626,201 @@
 <script id="ch0105/01">
 
   var n = prompt('n=?')
-  var a = prompt('a=?')
-  var b = prompt('b=?')
 
-  
+  var sum = 0
+
+  for (let i = 1; i <= n; i++) {
+    sum += +prompt('age?')
+
+  }
+
+  var y = (sum / n).toFixed(2)
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/02">
+
+  var n = 12
+
+  var sum = 0
+
+  for (let i = 0; i < n; i++) {
+    sum += +prompt('Account?')
+
+  }
+
+  var y = '$' + (sum / n).toFixed(2)
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/03">
+
+  var n = +prompt('几个数?')
+
+  var sum = 0
+
+  for (let i = 0; i < n; i++) {
+    sum += +prompt('Account?')
+
+  }
+
+  var y = (sum / n).toFixed(4)
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/04">
+
+  var n = +prompt('几个数?')
+
+  var sum = 0
+
+  for (let i = 0; i < n; i++) {
+    sum += +prompt('Account?')
+
+  }
+
+  var y = sum + (sum / n).toFixed(5)
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/05">
+
+  var n = +prompt('几个数?')
+
+  var max = 0
+
+  for (let i = 0; i < n; i++) {
+    var num = +prompt()
+
+    if (num > max) {
+      var max = num
+    }
+
+  }
+
+  var y = max
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/06">
+
+  var n = +prompt('几个数?')
+
+  var max = 0
+
+  var min = 1000
+
+  for (let i = 0; i < n; i++) {
+    var num = +prompt()
+
+    if (num > max) {
+      var max = num
+    }
+
+    if (num < min) {
+      var min = num
+    }
+  }
+
+  var y = max - min
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/07">
+
+  var n = +prompt('几天?')
+
+  var jb1 = 0
+
+  var jb2 = 0
+
+  var jb3 = 0
+
+  for (let i = 0; i < n; i++) {
+    var num1 = +prompt('金？')
+
+    jb1 += num1
+
+    var num2 = +prompt('银？')
+
+    jb2 += num2
+
+    var num3 = +prompt('铜')
+
+    jb3 += num3
+
+  }
+
+  var y = String(jb1) + '' + String(jb2) + '' + String(jb3) + '' + (jb1 + jb2 + jb3)
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/08">
+
+  var n = +prompt('几角?')
+
+  var angle1 = +prompt()
+
+  var angle2 = +prompt()
+
+  var y = (n - 2) * 180 - angle1 - angle2
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/09">
+
+  var m = +prompt('?')
+
+  var n = +prompt('?')
+
+  var y = 0
+
+  if (m % 2 !== 0) {
+    var m = m - 1
+  }
+
+  for (let i = 0; i < (n - m) / 2; i++) {
+    y += m + 1 + i * 2
+
+  }
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/10">
+
+  var m = +prompt('?')
+
+  var n = +prompt('?')
+
+  while (m % 17 === 0) {
+    m++
+  }
+
+  var y = 0
+
+  while (m <= n) {
+    y += m
+
+    m += 17
+  }
 
   console.log(y);
 
