@@ -996,11 +996,11 @@
     var b = +prompt()
 
     if (b / a - b1 / a1 > 0.05) {
-      console.log(better)
+      console.log('better')
     } else if (b1 / a1 - b / a > 0.05) {
-      console.log(worse)
+      console.log('worse')
     } else {
-      console.log(same)
+      console.log('same')
     }
 
   }
@@ -1064,11 +1064,14 @@
 
       y += 2 * n + '/2=' + n + ' '
 
-    } else if (n === 1) {
-      y += 'end'
     }
 
   }
+  if (n === 1) {
+    y += 'end'
+
+  }
+
 
   console.log(y);
 
@@ -1100,9 +1103,8 @@
       var save0 = save
     }
 
+    y = save0 * 1.2 + pocket
   }
-
-  y = save0 * 1.2 + pocket
 
   console.log(y);
 
@@ -1139,7 +1141,7 @@
 
   var n = +prompt()
 
-  
+
 
   console.log(y);
 
