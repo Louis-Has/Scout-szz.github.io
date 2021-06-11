@@ -1039,6 +1039,7 @@
     s += h * 2
 
     h *= .5
+
   }
 
   var y = s.toFixed(4) + ' ' + h.toFixed(7)
@@ -1051,29 +1052,26 @@
 
   var n = +prompt('?')
 
-  var y = ''
-
   while (n !== 1) {
+
     if (n % 2 === 1) {
       n = n * 3 + 1
 
-      y += (n - 1) / 3 + '*3+1=' + n + ' '
+      console.log((n - 1) / 3 + ' * 3 + 1=' + n)
 
     } else if (n % 2 === 0) {
       n /= 2
 
-      y += 2 * n + '/2=' + n + ' '
+      console.log(2 * n + ' / 2=' + n)
 
     }
 
   }
+
   if (n === 1) {
-    y += 'end'
+    console.log('end')
 
   }
-
-
-  console.log(y);
 
 </script>
 
@@ -1141,8 +1139,203 @@
 
   var n = +prompt()
 
+  var h = 0
 
+  for (let i = 0; i < n; i++) {
+    var ss = +prompt()
+
+    var sz = +prompt()
+
+    if (ss >= 90 && ss <= 140 && sz >= 60 && sz <= 90) {
+      h++
+    } else {
+      h = 0
+    }
+  }
+
+  console.log(h);
+
+</script>
+
+<script id="ch0105/25">
+
+  var x = 81
+
+
+  for (let i = x; i < 342; i++) {
+
+    var xs = x.toString(7)
+
+    var xn = x.toString(9)
+
+    x++
+
+    if (xn - xn % 100 === xs % 10 * 100 && xn % 100 - xn % 10 === xs % 100 - xs % 10 && xn % 10 * 100 === xs - xs % 100) {
+      console.log(x)
+
+      console.log(xs)
+
+      console.log(xn)
+
+      break
+
+    }
+
+  }
+
+</script>
+
+<script id="ch0105/26">
+
+  var n = +prompt()
+
+  var y = 0
+
+  for (let i = 0; i < n; i++) {
+    var a = prompt()
+
+    if ((a[3] - a[0] - a[1] - a[2]) > 0) {
+      y++
+
+    }
+
+  }
 
   console.log(y);
+
+</script>
+
+<script id="ch0105/27">
+
+  var k = +prompt()
+
+  var sum = 0
+
+  for (var i = 0; sum > k; i++) {
+    sum += 1 / (i + 1)
+
+  }
+
+  console.log(i + 1);
+
+</script>
+
+<script id="ch0105/28">
+
+  var n = prompt()
+
+  for (var i = n.length - 1; i >= 0; i--) {
+    console.log(n[i])
+
+  }
+
+</script>
+
+<script id="ch0105/29">
+
+  var n = +prompt()
+
+  var d = 0
+
+  var y = 0
+
+  while (n) {
+    d = n % 10
+
+    y = y * 10 + d
+
+    n = (n - n % 10) / 10
+  }
+
+  console.log(y)
+
+</script>
+
+<script id="ch0105/30">
+
+  var m = prompt()
+
+  var k = +prompt()
+
+  var y = 'NO'
+
+  if (m % 19 === 0) {
+    var c = 0
+
+    for (let i = 0; i < m.length; i++) {
+      if (m[i] == 3) {
+        c++
+
+      }
+
+    }
+    if (c === k) {
+      var y = 'YES'
+    }
+
+  }
+
+  console.log(y)
+
+</script>
+
+<script id="ch0105/31">
+
+  var n = +prompt()
+
+  var m = +prompt()
+
+  var y = ''
+
+  for (let u = 1; u <= n; u++) {
+    var c = 0
+
+    if (u % 2 === 1) {
+      c++
+
+    }
+
+    for (let i = 3; i <= m; i++) {
+
+      if (u % i === 0) {
+        c++
+
+      }
+
+    }
+    if (c % 2 === 1) {
+      y += u + ','
+
+    }
+
+  }
+
+  y = y.substring(0, y.length - 1)
+
+  console.log(y)
+
+</script>
+
+<script id="ch0105/32">
+
+  var n = +prompt()
+
+  var p = 1
+
+  var q = 2
+
+  var sum = 2
+
+  for (let i = 1; i < n; i++) {
+    var d = q
+
+    q = q + p
+
+    p = d
+
+    sum += q / p
+  }
+
+  console.log(sum.toFixed(4))
 
 </script>
