@@ -1069,7 +1069,7 @@
   }
 
   if (n === 1) {
-    console.log('end')
+    console.log('End')
 
   }
 
@@ -1161,6 +1161,7 @@
 
   var x = 81
 
+  console.log('不提供');
 
   for (let i = x; i < 342; i++) {
 
@@ -1211,7 +1212,7 @@
 
   var sum = 0
 
-  for (var i = 0; sum > k; i++) {
+  for (var i = 0; sum < k; i++) {
     sum += 1 / (i + 1)
 
   }
@@ -1337,5 +1338,309 @@
   }
 
   console.log(sum.toFixed(4))
+
+</script>
+
+<script id="ch0105/33">
+
+  var n = +prompt()
+
+  var sum = 0
+
+  for (let i = 0; i < n; i++) {
+    sum += Math.pow(-1, i) / (i + 1)
+
+  }
+
+  console.log(sum.toFixed(4))
+
+</script>
+
+<script id="ch0105/34">
+
+  var n = +prompt()
+
+  var sum = 0
+
+  for (let i = 1; i <= n; i++) {
+    var j = 1
+
+    for (let u = 1; u <= i; u++) {
+      j *= u
+    }
+
+    sum += j
+
+  }
+
+  console.log(sum)
+
+</script>
+
+<script id="ch0105/35">
+
+  var n = +prompt()
+
+  var sum = 1
+
+  for (let i = 1; i <= n; i++) {
+    var j = 1
+
+    for (let u = 1; u <= i; u++) {
+      j *= u
+    }
+
+    sum += 1 / j
+
+  }
+
+  console.log(sum.toFixed(10))
+
+</script>
+
+<script id="ch0105/36">
+
+  var x = +prompt()
+  var n = +prompt()
+
+  var sum = 1
+
+  for (let i = 1; i <= n; i++) {
+    var j = 1
+
+    for (let u = 1; u <= i; u++) {
+      j *= x
+    }
+
+    sum += j
+
+  }
+
+  console.log(sum.toFixed(2))
+
+</script>
+
+<script id="ch0105/37">
+
+  var m = +prompt()
+
+  var n = +prompt()
+
+  var x = +prompt()
+
+  var h = 0
+
+  while (x > 0) {
+    while (h < m) {
+      x--
+
+      h += n
+
+      if (x === 0)
+        break
+
+    }
+
+    if (h >= m) {
+      n += Math.trunc(m / n)
+
+      h = 0
+
+    }
+
+  }
+  console.log(n)
+
+</script>
+
+<script id="ch0105/38">
+
+  var n = +prompt()
+
+
+  console.log(n)
+
+</script>
+
+<script id="ch0105/39">
+
+  var n = +prompt()
+
+  var sum = 0
+
+  for (let i = 1; i <= n; i++) {
+    if (i % 7 !== 0) {
+      for (let u = 0; u < (i + '').length; u++) {
+        if ((i + '')[u] == 7) {
+          var d = 0
+
+          break
+
+        }
+        var d = i
+
+      }
+      sum += d * d
+
+    }
+
+  }
+
+  console.log(sum)
+
+</script>
+
+<script id="ch0105/40">
+
+  var n = +prompt()
+
+  var sum = 0
+
+  for (let i = 1; i <= n; i++) {
+    for (let u = 0; u < (i + '').length; u++) {
+      if ((i + '')[u] == 1) {
+        sum++
+      }
+    }
+  }
+
+  console.log(sum)
+
+</script>
+
+<script id="ch0105/41">
+
+  var n = +prompt()
+
+  var m = +prompt()
+
+  var sum = 0
+
+  if (n > m) {
+    var d = n
+
+    n = m
+
+    m = d
+
+  }
+
+  for (let i = n; i <= m; i++) {
+    for (let u = 0; u < (i + '').length; u++) {
+      if ((i + '')[u] == 2) {
+        sum++
+      }
+    }
+  }
+
+  console.log(sum)
+
+</script>
+
+<script id="ch0105/42">
+
+  var n = +prompt()
+
+  var m = +prompt()
+
+  var v = prompt('?')
+
+  var a = +prompt()
+
+  var sum = ''
+
+  for (let i = 1; i <= m; i++) {
+    for (let u = 1; u <= n; u++) {
+
+      if (a === 0 && i !== 1 && i !== m && u !== 1 && u !== n) {
+        sum += ' '
+
+        continue
+
+      }
+      sum += v
+
+    }
+    sum += '\n'
+
+  }
+
+
+  console.log(sum)
+
+</script>
+
+<script id="ch0105/43">
+
+  var n = +prompt()
+
+  var a = Math.ceil(Math.sqrt(n))
+
+  for (let i = a; i < n; i++) {
+    if (n % i === 0) {
+      var y = i
+      break
+
+    }
+
+  }
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/44">
+
+  var n = +prompt()
+
+  var a = 1
+
+  for (let i = 3; ; i++) {
+    var v = true
+    for (let u = 2; u < i; u++) {
+      if (i % u === 0) {
+        v = false
+        break
+      }
+    }
+
+    if (v) {
+      a++
+    }
+
+    if (a === n) {
+      var y = i
+      break
+    }
+  }
+
+  console.log(y);
+
+</script>
+
+<script id="ch0105/45">
+
+  var n = +prompt()
+
+  var sum = 0
+
+  var d = 0
+
+  for (i = 1; ; i++) {
+    for (u = 1; u <= i; u++) {
+      d++
+      sum += i
+
+      if (d === n)
+        break
+
+    }
+
+    if (d === n)
+      break
+
+  }
+
+  console.log(sum);
 
 </script>
