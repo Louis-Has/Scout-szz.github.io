@@ -1685,27 +1685,42 @@
 </script>
 
 <script id="palindrom">
+  /* planA */
+  let n = +prompt()
 
+  function palindrom2(n) {
+    let reverse = 0
+
+    let ni = n
+
+    while (n) {
+      let digit = n % 10
+
+      reverse = reverse * 10 + digit
+
+      n = (n - digit) / 10
+
+    }
+
+    return reverse == ni
+  }
+
+  /* planB */
   let n = +prompt()
 
   function palindrom(n) {
     let x = n.toString()
 
-    let c = x.length
-
-    let check = true
+    let c = Math.trunc(Math.log10(n)) + 1
 
     for (i = 0; i < c / 2; i++) {
-      if (x[i] !== x[c - i - 1]) {
-        check = false
-      }
-    }
+      let u = c - i - 1
 
-    if (check) {
-      return 'yes'
+      let a = Math.trunc(n / Math.pow(10, u)) % 10
 
-    } else {
-      return 'no'
+      let b = Math.trunc(n / Math.pow(10, i)) % 10
+
+      return a == b
 
     }
   }
@@ -1734,17 +1749,15 @@
     let sum = 1
 
     let t = Math.sqrt(n)
+
     for (i = 2; i < t; i++) {
       if (n % i === 0) {
         sum += (i + n / i)
 
       }
     }
-    if (sum === n) {
-      return 'yes'
-    } else {
-      return 'no'
-    }
+
+    return sum == n
   }
 
   complete_number(n)
@@ -1755,7 +1768,7 @@
 
   function complete_numbers(n) {
     for (let i = 1; i <= n; i++) {
-      if (complete_number(i) === 'yes') {
+      if (complete_number(i)) {
         console.log(i)
 
       }
@@ -1823,7 +1836,21 @@
     }
   }
 
-  console.log(lcf(m, n))
+  function lcf2(m, n) {
+    if (m % n !== 0) {
+      let a = n
+
+      n = m % n
+
+      m = a
+
+      return lcf2(m, n)
+    } else {
+      return n
+    }
+  }
+
+  console.log(lcf2(m, n))
 
   function lcm(m, n) {
     for (let i = m; i < m * n; i++) {
@@ -1835,26 +1862,30 @@
     }
   }
 
-  console.log(lcm(m, n))
+  function lcm2(m, n) {
+    return m * n / lcf2(m, n)
+  }
+
+  console.log(lcm2(m, n))
 
 </script>
 
 <script id="sqrt">
 
-  let t = 15
+  let t = 56
 
-  let k = 5
+  let k = 4
 
-  function sqrt(n) {
-    let n = t * 10 ** k
+  function sqrt(t) {
+    let n = t * 10 ** (2 * k)
 
-    let i = n / 2
+    let i = t / 2 * 10 ** k
 
     let up = n
 
     let down = 1
 
-    while (n - i * i > 10)
+    while (n - i * i > 10 ** k || i * i - n > 10 ** k)
       if (i * i > n) {
         up = i
         i = i - (i - down) / 2
@@ -1862,12 +1893,28 @@
       } else {
         down = i
         i = i + (up - i) / 2
+        console.log(i / 10 ** k)
 
       }
 
-    return i
+    console.log((i / 10 ** k).toFixed(k))
   }
 
-  sqrt(t)
-  
+  function sqrt2(t) {
+    let u = t / 2
+
+    while (t - u * u > 0.001 || u * u - t > 0.001) {
+      u = (u + t / u) / 2
+
+      console.log(u)
+
+    }
+
+    return u.toFixed(4)
+  }
+
+  console.log(sqrt(t))
+
+  console.log(Math.sqrt(t))
+
 </script>
