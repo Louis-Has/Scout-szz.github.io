@@ -41,9 +41,24 @@ var damiaomiao = function () {
     return result
   }
 
+  function difference(array, ...values) {
+    let result = array
+    let arr = concat(...values)
+    for (let i = 0; i < arr.length; i++) {
+      let n = result.indexOf(arr[i])
+      if (n >= 0) {
+        result[n] = result[result.length - 1]
+        result.pop()
+      }
+    }
+    return result
+  }
+
+
   return {
     chunk: chunk,
     compact: compact,
     concat: concat,
+    difference: difference,
   }
 }
