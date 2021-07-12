@@ -1,4 +1,4 @@
-let damiaomiao = {
+var damiaomiao = {
   chunk: function (array, size) {
     let result = []
     let l = array.length
@@ -13,6 +13,7 @@ let damiaomiao = {
     }
     return result
   },
+
   compact: function (array) {
     let result = []
     let l = array.length
@@ -23,7 +24,22 @@ let damiaomiao = {
     }
     return result
   },
-  concat: function (array)
+
+  concat: function concat(array, ...args) {
+    let result = array
+    let l = args.length
+    for (let i = 0; i < l; i++) {
+      if (args[i][0]) {
+        let l = args[i].length
+        for (let u = 0; u < l; u++) {
+          result.push(args[i][u])
+        }
+      } else {
+        result.push(args[i])
+      }
+    }
+    return result
+  },
 
 
 }
