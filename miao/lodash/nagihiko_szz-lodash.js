@@ -54,7 +54,7 @@ var nagihiko_szz = function () {
     return result
   }
 
-  function differenceBy(array, ...values, f) {
+  function differenceBy(array, ...values) {
     let len = arguments.length
     //TODO
     let result = array.map(f)
