@@ -103,8 +103,23 @@ var nagihiko_szz = function () {
 
   }
 
-  function fill() {
-
+  function fill(array, value, st, en) {
+    let result = []
+    let l = array.length
+    let i = 0
+    while (i < st) {
+      result.push(array[i])
+      i++
+    }
+    while (i < en) {
+      result.push(value)
+      i++
+    }
+    while (i < l) {
+      result.push(array[i])
+      i++
+    }
+    return result
   }
 
   function findIndex() {
@@ -115,8 +130,17 @@ var nagihiko_szz = function () {
 
   }
 
-  function flatten() {
-
+  function flatten(array) {
+    let result = []
+    for (let i = 0; i < l; i++) {
+      if (array[i][0] === undefined) {
+        result.push(array[i])
+      } else {
+        let ll = array[i].length
+        for (let u = 0; u < ll; u++) result.push(array[i][u])
+      }
+    }
+    return result
   }
 
   function flattenDeep() {
