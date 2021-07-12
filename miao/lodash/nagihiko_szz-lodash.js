@@ -1,5 +1,5 @@
-var damiaomiao = {
-  chunk: function (array, size) {
+var damiaomiao = function () {
+  function chunk(array, size) {
     let result = []
     let l = array.length
     let i = 0
@@ -12,9 +12,9 @@ var damiaomiao = {
       result.push(dv)
     }
     return result
-  },
+  }
 
-  compact: function (array) {
+  function compact(array) {
     let result = []
     let l = array.length
     for (let i = 0; i < l; i++) {
@@ -23,9 +23,9 @@ var damiaomiao = {
       }
     }
     return result
-  },
+  }
 
-  concat: function concat(array, ...args) {
+  function concat(array, ...args) {
     let result = array
     let l = args.length
     for (let i = 0; i < l; i++) {
@@ -39,7 +39,11 @@ var damiaomiao = {
       }
     }
     return result
-  },
+  }
 
-
+  return {
+    chunk: chunk,
+    compact: compact,
+    concat: concat,
+  }
 }
