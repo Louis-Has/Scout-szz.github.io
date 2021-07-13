@@ -132,6 +132,7 @@ var nagihiko_szz = function () {
 
   function flatten(array) {
     let result = []
+    let l = array.length
     for (let i = 0; i < l; i++) {
       if (array[i][0] === undefined) {
         result.push(array[i])
@@ -143,12 +144,32 @@ var nagihiko_szz = function () {
     return result
   }
 
-  function flattenDeep() {
-
+  function flattenDeep(array) {
+    let result = []
+    let l = array.length
+    for (let i = 0; i < l; i++) {
+      if (array[i][0] === undefined) {
+        result.push(array[i])
+      } else {
+        let dv = flattenDeep(array[i])
+        concat(result, dv)
+      }
+    }
+    return result
   }
 
-  function flattenDepth() {
-
+  function flattenDepth(array, k) {
+    let result = []
+    let l = array.length
+    for (let i = 0; i < l; i++) {
+      if (array[i][0] !== undefined && k > 0) {
+        let dv = flattenDepth(array[i], --k)
+        concat(result, dv)
+      } else {
+        result.push(array[i])
+      }
+    }
+    return result
   }
 
   function fromPairs() {
