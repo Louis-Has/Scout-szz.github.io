@@ -377,7 +377,14 @@ var nagihiko_szz = function () {
 
 	}
 
-	function filter() {
+	function filter(obj, fun) {
+		fun = iteratee(fun)
+		let result = []
+		for (let it in obj) {
+			if (fun(obj[it]))
+				result.push(obj[it])
+		}
+		return result
 
 	}
 
@@ -473,8 +480,24 @@ var nagihiko_szz = function () {
 		return result
 	}
 
-	function map() {
+	function map(obj, fun) {
+		fun = iteratee(fun)
+		let result = []
+		for (let it in obj) {
+			result.push(fun(obj[it]))
+		}
+		return result
+	}
 
+	function iteratee(predicate) {
+		if (typeof predicate === 'function')
+			return predicate
+		if (typeof predicate === 'string')
+			return property(predicate)
+		if (Array.isArray(predicate))
+			return isEqual(...predicate)
+		if (typeof predicate === 'object')
+			return matches(predicate)
 	}
 
 	function orderBy() {
@@ -621,8 +644,40 @@ var nagihiko_szz = function () {
 
 	}
 
-	function isEqual() {
-
+	function isEqual(object, other) {
+		if (typeof object === ('number' || 'string'))
+			return object === other
+		if (Array.isArray(object)) {
+			if (Array.isArray(other)) {
+				if (object.length === other.length) {
+					for (let i = 0; i < object.length; i++) {
+						if (object[i] !== other[i])
+							return false
+					}
+				} else {
+					return false
+				}
+			} else {
+				return false
+			}
+			return true
+		}
+		if (typeof object === 'object') {
+			if (typeof other === 'object') {
+				if (Object.keys(object).length === Object.keys(other).length) {
+					let keys = Object.keys(object)
+					for (let i = 0; i < keys.length; i++) {
+						if (!other[keys[i]] || !(object[keys[i]] === other[keys[i]]))
+							return false
+					}
+				} else {
+					return false
+				}
+			} else {
+				return false
+			}
+			return true
+		}
 	}
 
 	function isEqualWith() {
@@ -898,8 +953,15 @@ var nagihiko_szz = function () {
 
 	}
 
-	function get() {
-
+	function get(object, array, defaultvalue = 'default') {
+		for (let i of array.toPath()) {
+			if (object == undefined) {
+				return defaultvalue
+			} else {
+				object = object[i]
+			}
+		}
+		return object
 	}
 
 	function has() {
@@ -1134,12 +1196,14 @@ var nagihiko_szz = function () {
 
 	}
 
-	function identity() {
-
+	function identity(value) {
+		return value
 	}
 
-	function matches() {
-
+	function matches(source) {
+		return function (object) {
+			return isMatch(object, source)
+		}
 	}
 
 	function method() {
@@ -1154,8 +1218,19 @@ var nagihiko_szz = function () {
 
 	}
 
-	function property() {
-
+	function property(value) {
+		if ('.' in value) {
+			return function (dv) {
+				value = value.split('.')
+				for (let it of value)
+					obj = obj[it]
+				return obj
+			}
+		} else {
+			return function (dv) {
+				return dv[value]
+			}
+		}
 	}
 
 	function propertyOf() {
@@ -1174,8 +1249,13 @@ var nagihiko_szz = function () {
 
 	}
 
-	function toPath() {
-
+	function toPath(value) {
+		// if (Array.isArray(value)) {
+		// 	return value
+		// } else {
+		// 	return value.split('.')
+		// }
+		return Array.isArray(value) ? value : value.split('.')
 	}
 
 	function uniqueId() {
