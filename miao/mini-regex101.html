@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mini-regex101</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        span {
+            line-height: 40px;
+            font-size: 24px;
+        }
+
+        label,
+        label input {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        input[type='text'],
+        textarea,
+        .result,
+        div {
+            width: 360px;
+            height: 200px;
+            font-size: 18px;
+            font-family: 'Courier New', Courier, monospace;
+            box-sizing: border-box;
+            padding: 0;
+            white-space: pre-wrap;
+            overflow-y: scroll;
+        }
+
+        input[type='text'] {
+            height: 40px;
+        }
+
+        textarea {
+            position: absolute;
+            background-color: transparent;
+        }
+
+        div em {
+            background-color: #9fcfff;
+            font-style: normal;
+        }
+
+        div {
+            /* color: red; */
+            /* color: transparent; */
+            border: solid 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <span>输入正则表达式：</span>
+    <label><input type="checkbox" onclick="run()" id="ignoreCase">i</label>
+    <label><input type="checkbox" onclick="run()" checked id="global">g</label>
+    <label><input type="checkbox" onclick="run()" id="multiline">m</label>
+    <br>
+    <input type="text" id="reg" oninput="run()" value="fo.">
+    <br>
+    <span>文字内容：</span>
+    <br>
+    <textarea name="" id="str" cols="40" rows="10"
+        oninput="run()">fanfoot fooster Mahran ddddfo s,,fossdafolksy nonfood, foos  sdfoo fo2 sssdf00sokadfo2s</textarea>
+    <div id="res_show"></div>
+    <script>
+        function run() {
+            let dv = new RegExp(reg.value, getFlags())
+            console.log(dv)
+            let match
+            if (dv.global) {
+                let result = ''
+                let st = dv.lastIndex
+                while (match = dv.exec(str.value)) {
+                    result += str.value.slice(st, match.index)
+                    result += '<em>' + match[0] + '</em>'
+                    st = dv.lastIndex
+                }
+                result += str.value.slice(st)
+                res_show.innerHTML = result
+                console.log(result)
+            } else {
+                let result = ''
+                match = dv.exec(str.value)
+                result += str.value.slice(0, dv.index)
+                result += '<em>' + dv[0] + '</em>'
+                result += str.value.slice(dv.index + match[0].length)
+                res_show.innerHTML = result
+            }
+        }
+
+        run()
+
+        function getFlags() {
+            let flags = ''
+            if (ignoreCase.checked) {
+                flags += 'i'
+            }
+            if (global.checked) {
+                flags += 'g'
+            }
+            if (multiline.checked) {
+                flags += 'm'
+            }
+            return flags
+        }
+    </script>
+</body>
+
+</html>

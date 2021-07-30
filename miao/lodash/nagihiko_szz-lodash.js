@@ -508,8 +508,8 @@ var nagihiko_szz = function () {
 
 	}
 
-	function reduce() {
-
+	function reduce(obj, fn) {
+		
 	}
 
 	function reduceRight() {
@@ -893,8 +893,9 @@ var nagihiko_szz = function () {
 		return array.reduce((x, y) => x + y)
 	}
 
-	function sumBy() {
-
+	function sumBy(array, fun = identity) {
+		fun = iteratee(fun)
+		return array.reduce((x, y) => x + fun(y), 0)
 	}
 
 	function clamp() {
@@ -1219,12 +1220,12 @@ var nagihiko_szz = function () {
 	}
 
 	function property(value) {
-		if ('.' in value) {
+		if (value.indexOf('.') >= 0) {
 			return function (dv) {
 				value = value.split('.')
 				for (let it of value)
-					obj = obj[it]
-				return obj
+					value = value[it]
+				return value
 			}
 		} else {
 			return function (dv) {
