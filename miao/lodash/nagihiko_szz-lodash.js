@@ -409,12 +409,13 @@ var nagihiko_szz = function () {
 	}
 
 	function forEach(array, fun) {
-		let l = array.length
-		fun(array[i], i)
+		for (let i in array) {
+			fun(array[i], i)
+		}
 		return array
 	}
 
-	function forEachRight() {
+	function forEachRight(array, fun) {
 		let l = array.length
 		for (let i = l - 1; i >= 0; i--) {
 			fun(array[i], i)
@@ -508,8 +509,29 @@ var nagihiko_szz = function () {
 
 	}
 
-	function reduce(obj, fn) {
-		
+	function reduce(obj, fn, init) {
+		fn = iteratee(fn)
+		if (Array.isArray(obj)) {
+			init = init || 0
+			for (let i of obj)
+				init = fn(init, i)
+		} else {
+			init = init || {}
+			for (let i in obj) {
+				init = fn(init, obj[i], i)
+			}
+		}
+		return init
+		// let keyArr = keys(obj),
+		// 	start = 0
+		// if (arguments.length == 2) {
+		// 	start = 1
+		// 	init = obj[keyArr[0]]
+		// }
+		// for (let i = start; i < keyArr.length; i++) {
+		// 	init = fn(init, obj[keyArr[i]], keyArr[i], obj)
+		// }
+		// return init
 	}
 
 	function reduceRight() {
@@ -985,8 +1007,13 @@ var nagihiko_szz = function () {
 
 	}
 
-	function keys() {
-
+	function keys(obj) {
+		let res = []
+		for (let i in obj) {
+			if (obj.hasOwnProperty(i))
+				res.push(i)
+		}
+		return res
 	}
 
 	function keysIn() {
@@ -1222,10 +1249,10 @@ var nagihiko_szz = function () {
 	function property(value) {
 		if (value.indexOf('.') >= 0) {
 			return function (dv) {
-				value = value.split('.')
-				for (let it of value)
-					value = value[it]
-				return value
+				vw = value.split('.')
+				for (let it of vw)
+					dv = dv[it]
+				return dv
 			}
 		} else {
 			return function (dv) {
