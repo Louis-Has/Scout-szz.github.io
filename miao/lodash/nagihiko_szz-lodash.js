@@ -43,29 +43,24 @@ var nagihiko_szz = function () {
 	}
 
 	function difference(array, ...values) {
-		let result = array
+		let result = []
 		let arr = concat(...values)
-		for (let i = 0; i < arr.length; i++) {
-			let n = result.indexOf(arr[i])
-			if (n >= 0) {
-				result[n] = result[result.length - 1]
-				result.pop()
-			}
+		for (let i of array) {
+			if (arr.indexOf(i) < 0)
+				result.push(i)
 		}
 		return result
 	}
 
-	function differenceBy(array, ...values) {
-		let len = arguments.length
-		// TODO
-		let result = array.map(f)
-		let arr = concat(...values).map(f)
-		for (let i = 0; i < arr.length; i++) {
-			let n = result.indexOf(arr[i])
-			if (n >= 0) {
-				result[n] = result[result.length - 1]
-				result.pop()
-			}
+	function diffenrenceBy(array, ...values) {
+		let result = []
+		let arr = concat(...values)
+		let fun = iteratee(arr.pop())
+		forEach(arr, fun)
+		// arr.forEach(fun)
+		for (let i of array) {
+			if (arr.indexOf(fun(i)) < 0)
+				result.push(i)
 		}
 		return result
 	}
@@ -385,7 +380,6 @@ var nagihiko_szz = function () {
 				result.push(obj[it])
 		}
 		return result
-
 	}
 
 	function find() {
@@ -409,16 +403,16 @@ var nagihiko_szz = function () {
 	}
 
 	function forEach(array, fun) {
-		for (let i in array) {
-			fun(array[i], i)
+		for (let key in array) {
+			array[key] = fun(array[key], key, array)
 		}
 		return array
 	}
 
 	function forEachRight(array, fun) {
 		let l = array.length
-		for (let i = l - 1; i >= 0; i--) {
-			fun(array[i], i)
+		for (let key = l - 1; key >= 0; key--) {
+			fun(array[key], key, array)
 		}
 		return array
 	}
@@ -484,8 +478,8 @@ var nagihiko_szz = function () {
 	function map(obj, fun) {
 		fun = iteratee(fun)
 		let result = []
-		for (let it in obj) {
-			result.push(fun(obj[it]))
+		for (let i in obj) {
+			result.push(fun(obj[i], obj[i - 1] || 0, obj))
 		}
 		return result
 	}
@@ -667,36 +661,24 @@ var nagihiko_szz = function () {
 	}
 
 	function isEqual(object, other) {
-		if (typeof object === ('number' || 'string'))
+		if (typeof object === 'number' || typeof object === 'string')
 			return object === other
 		if (Array.isArray(object)) {
-			if (Array.isArray(other)) {
-				if (object.length === other.length) {
-					for (let i = 0; i < object.length; i++) {
-						if (object[i] !== other[i])
-							return false
-					}
-				} else {
+			if (!Array.isArray(other)) return false
+			if (object.length !== other.length) return false
+			for (let i = 0; i < object.length; i++) {
+				if (!isEqual(object[i], other[i]))
 					return false
-				}
-			} else {
-				return false
 			}
 			return true
 		}
 		if (typeof object === 'object') {
-			if (typeof other === 'object') {
-				if (Object.keys(object).length === Object.keys(other).length) {
-					let keys = Object.keys(object)
-					for (let i = 0; i < keys.length; i++) {
-						if (!other[keys[i]] || !(object[keys[i]] === other[keys[i]]))
-							return false
-					}
-				} else {
+			if (typeof other !== 'object') return false
+			if (Object.keys(object).length !== Object.keys(other).length) return false
+			let keys = Object.keys(object)
+			for (let i = 0; i < keys.length; i++) {
+				if (!other[keys[i]] || !isEqual(object[keys[i]], other[keys[i]]))
 					return false
-				}
-			} else {
-				return false
 			}
 			return true
 		}
@@ -1247,16 +1229,16 @@ var nagihiko_szz = function () {
 	}
 
 	function property(value) {
-		if (value.indexOf('.') >= 0) {
+		if (value.indexOf('.') < 0) {
+			return function (dv) {
+				return dv[value]
+			}
+		} else {
 			return function (dv) {
 				vw = value.split('.')
 				for (let it of vw)
 					dv = dv[it]
 				return dv
-			}
-		} else {
-			return function (dv) {
-				return dv[value]
 			}
 		}
 	}
@@ -1303,7 +1285,7 @@ var nagihiko_szz = function () {
 		compact,
 		concat,
 		difference,
-		differenceBy,
+		diffenrenceBy,
 		differenceWith,
 		drop,
 		dropRight,
