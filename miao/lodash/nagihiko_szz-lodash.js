@@ -1130,16 +1130,136 @@ var nagihiko_szz = function () {
 
 	}
 
-	function replace() {
+	String.prototype.search2 = function (reg) {
+		if (typeof reg == 'string') {
+			return this.indexOf(reg)
+		}
+		var prevLastIndex = reg.lastIndex // 记录正则本身的lastIndex以备后续还原
+		reg.lastIndex = start // 将lastIndex归0以防止有g的话不从开头匹配
+		var match = reg.exec(this)
+		if (match) {
+			reg.lastIndex = prevLastIndex
+			return match.index
+		} else {
+			reg.lastIndex = prevLastIndex
+			return -1
+		}
+	}
 
+	String.prototype.match2 = function (re) {
+		if (re.global) {
+			var prevLastIndex = re.lastIndex
+			re.lastIndex = 0
+			var result = []
+			var match = null
+
+			while (match = re.exec(this)) {
+				result.push(match[0])
+			}
+
+			if (result.length == 0) {
+				return null
+			}
+			return result
+		} else {
+			return re.exec(this)
+		}
+	}
+
+	function replace(string, replacer, replacement,) {
+		if (typeof replacer == 'string') {
+			var idx = this.indexOf(replacer)
+			if (typeof replacement == 'function') {
+				replacement = replacement(replacer, idx, this)
+			} else {
+				replacement = replacement.split2('$&').join(replacer)
+			}
+			if (idx == -1) {
+				return this
+			} else {
+				return this.slice(0, idx) + replacement + this.slice(idx + replacer.length)
+			}
+		} else {
+			var oldLastIndex = replacer.lastIndex
+			replacer.lastIndex = 0
+			replacement = transformReplacementStringToReplacementFunction(replacement)
+			var result = ''
+
+			var match = null
+			var startIndex = replacer.lastIndex
+			while (match = replacer.exec(this)) {
+				result += this.slice(startIndex, match.index)
+				result += replacement(...match)
+				startIndex = replacer.lastIndex
+				if (match[0] == '') { // 零宽匹配
+					replacer.lastIndex++
+				}
+			}
+			result += this.slice(startIndex)
+
+			return result
+		}
+
+		//将形如'aaa$&bbb$1ccc$2d'的字符串转换为等价的函数
+		function transformReplacementStringToReplacementFunction(replacementString) {
+			if (typeof replacementString == 'function') {
+				return replacementString
+			}
+			// replacementString: 'aaa$&bbb$1ccc$2d'
+			var splitted = replacementString.split2(/(\$[\d&])/)
+			// splitted is like ["aaa", "$&", "bbb", "$1", "ccc", "$2", "d"]
+			return function (...args) {
+				var str = ''
+				for (var part of splitted) {
+					if (part.length == 2 && part[0] == '$') { // part is like $& $5 $7
+						if (part[1] == '&') {
+							str += args[0]
+						} else {
+							str += args[part[1]] || ''
+						}
+					} else {
+						str += part
+					}
+				}
+				return str
+			}
+		}
 	}
 
 	function snakeCase() {
 
 	}
 
-	function split() {
+	function split(string, spliter, length = Infinity) {
+		let result = []
+		if (typeof spliter == 'string') {
+			let st = 0
+			let index
+			while (index = string.indexOf(spliter) >= 0 && length-- > 0) {
+				result.push(string.slice(st, index))
+				st = index + spliter.length
+			}
+			result.push(string.slice(st))
+			return result
+		} else {
+			// let index = spliter.lastIndexOf
+			spliter.lastIndex = 0
 
+			if (!spliter.global)
+				spliter = new RegExp(spliter, spliter.flags + 'g')
+
+			let st = spliter.lastIndex
+			let match = null
+			while (match = spliter.exec(string)) {
+				result.push(string.slice(st, match.index))
+				result.push(...match.slice(1))
+				st = spliter.lastIndex
+				if (match[0] == '')
+					spliter.lastIndex++
+			}
+			result.push(string.slice(st))
+			return result
+		}
 	}
 
 	function startCase() {
@@ -1500,9 +1620,7 @@ var nagihiko_szz = function () {
 		padStart,
 		parseInt,
 		repeat,
-		replace,
 		snakeCase,
-		split,
 		startCase,
 		startsWith,
 		toLower,

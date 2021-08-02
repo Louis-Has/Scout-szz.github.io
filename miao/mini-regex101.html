@@ -33,6 +33,7 @@
             box-sizing: border-box;
             padding: 0;
             white-space: pre-wrap;
+            /* word-break: break-all; */
             overflow-y: scroll;
         }
 
@@ -76,23 +77,25 @@
             let dv = new RegExp(reg.value, getFlags())
             console.log(dv)
             let match
+            let result = ''
             if (dv.global) {
-                let result = ''
                 let st = dv.lastIndex
                 while (match = dv.exec(str.value)) {
                     result += str.value.slice(st, match.index)
                     result += '<em>' + match[0] + '</em>'
                     st = dv.lastIndex
+                    
+                    if (match[0] == '') // 处理零宽匹配
+                        dv.lastIndex++
                 }
                 result += str.value.slice(st)
                 res_show.innerHTML = result
                 console.log(result)
             } else {
-                let result = ''
                 match = dv.exec(str.value)
-                result += str.value.slice(0, dv.index)
-                result += '<em>' + dv[0] + '</em>'
-                result += str.value.slice(dv.index + match[0].length)
+                result += str.value.slice(0, match.index)
+                result += '<em>' + match[0] + '</em>'
+                result += str.value.slice(match.index + match[0].length)
                 res_show.innerHTML = result
             }
         }
