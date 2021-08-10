@@ -70,7 +70,14 @@
     <span>文字内容：</span>
     <br>
     <textarea name="" id="str" cols="40" rows="10"
-        oninput="run()">fanfoot fooster Mahran ddddfo s,,fossdafolksy nonfood, foos  sdfoo fo2 sssdf00sokadfo2s</textarea>
+        oninput="run()">
+        fanfoot fooster Mahran ddddfo s,,fossdafolksy nonfood, foos  sdfoo fo2 sssdf00sokadfo2s
+        fanfoot fooster Mahran ddddfo s,,fossdafolksy nonfood, foos  sdfoo fo2 sssdf00sokadfo2s
+        fanfoot fooster Mahran ddddfo s,,fossdafolksy nonfood, foos  sdfoo fo2 sssdf00sokadfo2s
+        fanfoot fooster Mahran ddddfo s,,fossdafolksy nonfood, foos  sdfoo fo2 sssdf00sokadfo2s
+        fanfoot fooster Mahran ddddfo s,,fossdafolksy nonfood, foos  sdfoo fo2 sssdf00sokadfo2s
+        fanfoot fooster Mahran ddddfo s,,fossdafolksy nonfood, foos  sdfoo fo2 sssdf00sokadfo2s
+    </textarea>
     <div id="res_show"></div>
     <script>
         function run() {
@@ -84,7 +91,7 @@
                     result += str.value.slice(st, match.index)
                     result += '<em>' + match[0] + '</em>'
                     st = dv.lastIndex
-                    
+
                     if (match[0] == '') // 处理零宽匹配
                         dv.lastIndex++
                 }
