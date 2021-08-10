@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="left=device-left, initial-scale=1.0">
+    <title>drag</title>
+    <style>
+        div {
+            background-color: red;
+            width: 60px;
+            height: 30px;
+            margin: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        var lastX; // Tracks the last observed mouse X position
+        var rect = document.querySelector("div");
+        rect.addEventListener("mousedown", function (event) {
+            if (event.which == 1) {
+                lastX = event.pageX;
+                lastY = event.pageY;
+                addEventListener("mousemove", moved);
+                event.preventDefault(); // Prevent selection
+            }
+        });
+        function buttonPressed(event) {
+            if (event.buttons == null)
+                return event.which != 0;
+            else
+                return event.buttons != 0;
+        }
+        function moved(event) {
+            if (!buttonPressed(event)) {
+                removeEventListener("mousemove", moved);
+            } else {
+                // var dist = event.pageX - lastX;
+                // var newWidth = Math.max(10, rect.offsetWidth + dist);
+                // rect.style.width = newWidth + "px";
+                rect.style.left = rect.left + lastX + "px";
+                rect.style.top = rect.top + lastY + "px";
+                lastX = event.pageX;
+                lastY = event.pageY
+            }
+        }
+    </script>
+</body>
+
+</html>
