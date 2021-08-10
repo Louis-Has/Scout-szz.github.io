@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solar-system</title>
+    <style>
+        body {
+            margin: 0;
+            position: relative;
+        }
+
+        #galaxy {
+            background-color: rgb(0, 0, 0);
+            /* border: 1px solid red; */
+            height: 100vh;
+        }
+
+        #galaxy div {
+            position: absolute;
+            margin: auto;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 900px;
+        }
+
+        #elSun {
+            width: 40px;
+            /* border: 1px solid red; */
+        }
+
+        #elEarth {
+            height: 24px;
+        }
+
+        #elMoon {
+            height: 8px;
+            width: 8px;
+            background-color: #fff;
+        }
+
+        #elMars {
+            height: 20px;
+            width: 20px;
+            background-color: rgb(240, 103, 12);
+        }
+
+        #elMercury {
+            height: 16px;
+            width: 16px;
+            background-color: rgb(168, 162, 158);
+        }
+
+        #elVenus {
+            height: 16px;
+            width: 16px;
+            background-color: rgb(39, 30, 121);
+        }
+
+
+        /* nav  part  */
+
+        nav {
+            float: left;
+            display: flex;
+            flex-flow: column;
+            background-color: #51B1D1;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        nav span {
+            margin-bottom: 22px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <!-- 各星球旋转半径 -->
+        <input type="range" value="60" min="30" max="80" id="radiusMercury"><span>水星Mercury</span>
+        <input type="range" value="80" min="80" max="100" id="radiusVenus"><span>金星Venus</span>
+        <input type="range" value="140" min="100" max="200" id="radiusEarth"><span>地球Earth</span>
+        <input type="range" value="30" min="10" max="50" id="radiusMoon"><span>月球Moon</span>
+        <input type="range" value="220" min="200" max="300" id="radiusMars"><span>火星Mars</span>
+    </nav>
+
+    <div id="galaxy">
+        <div id="elSun"><img src="sun.png" alt="" width="100%"></div>
+        <div id="elMercury"><img src="" alt="" height="100%"></div>
+        <div id="elVenus"><img src="" alt="" height="100%"></div>
+        <div id="elEarth"> <img src="erath.png" alt="" height="100%"> </div>
+        <div id="elMoon"><img src="" alt="" height="100%"></div>
+        <div id="elMars"><img src="" alt="" height="100%"></div>
+    </div>
+
+    <script>
+        // let angle = 180
+
+
+
+        // let relVenus = 80
+        // let gdVenus = document.createElement('div')
+        // galaxy.prepend(gdVenus)
+        // gdVenus.style.width = gdVenus.style.height = radiusVenus * 2 + 'px'
+        // gdVenus.style.border = '1px dashed #262177'
+
+        function rotation(time) {
+            let dvx = galaxy.offsetWidth / 2
+            let dvy = galaxy.offsetHeight / 2
+
+            elSun.style.transform = `translate(-50%, -50%) rotate(` + time * 0.02 + `deg)`
+
+            let x1 = Math.cos(time * 0.001) * radiusEarth.value + dvx
+            elEarth.style.left = x1 + 'px'
+            let y1 = Math.sin(time * 0.001) * radiusEarth.value + dvy
+            elEarth.style.top = y1 + 'px'
+            trackradiusEarth.style.width = radiusEarth.value * 2 + 'px'
+            trackradiusEarth.style.height = radiusEarth.value * 2 + 'px'
+
+
+            elMoon.style.left = x1 + Math.cos(time * 0.004) * radiusMoon.value + 'px'
+            elMoon.style.top = y1 + Math.sin(time * 0.004) * radiusMoon.value + 'px'
+            trackradiusMoon.style.width = radiusMoon.value * 2 + 'px'
+            trackradiusMoon.style.height = radiusMoon.value * 2 + 'px'
+
+
+            elMars.style.left = Math.cos(time * 0.0015 + 1) * radiusMars.value + dvx + 'px'
+            elMars.style.top = Math.sin(time * 0.0015 + 1) * radiusMars.value + dvy + 'px'
+            trackradiusMars.style.width = radiusMars.value * 2 + 'px'
+            trackradiusMars.style.height = radiusMars.value * 2 + 'px'
+
+
+            elMercury.style.left = Math.cos(time * 0.0008 + 4) * radiusMercury.value + dvx + 'px'
+            elMercury.style.top = Math.sin(time * 0.0008 + 4) * radiusMercury.value + dvy + 'px'
+            trackradiusMercury.style.width = radiusMercury.value * 2 + 'px'
+            trackradiusMercury.style.height = radiusMercury.value * 2 + 'px'
+
+
+            elVenus.style.left = Math.cos(time * 0.0009 + 6) * radiusVenus.value + dvx + 'px'
+            elVenus.style.top = Math.sin(time * 0.0009 + 6) * radiusVenus.value + dvy + 'px'
+            trackradiusVenus.style.width = radiusVenus.value * 2 + 'px'
+            trackradiusVenus.style.height = radiusVenus.value * 2 + 'px'
+
+            requestAnimationFrame(rotation)
+        }
+        requestAnimationFrame(rotation)
+
+    </script>
+</body>
+
+</html>
