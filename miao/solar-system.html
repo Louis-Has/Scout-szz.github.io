@@ -101,6 +101,25 @@
     <script>
         // let angle = 180
 
+        function createTrack(radius) {
+            let dv = document.createElement('div')
+            dv.setAttribute('id', 'track' + radius.id)
+            if (radius.id === 'radiusMoon') {
+                elEarth.prepend(dv)
+            } else {
+                galaxy.prepend(dv)
+            }
+            dv.style.width = dv.style.height = radius.value * 2 + 'px'
+            dv.style.border = '1px dashed #A7A29E'
+            return dv.id
+        }
+
+
+        if (1) {
+            let dv = document.querySelectorAll('nav input')
+            for (let it of dv)
+                createTrack(it)
+        }
 
 
         // let relVenus = 80
