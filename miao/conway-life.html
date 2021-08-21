@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>conway-life</title>
+    <style>
+        main {
+            border: 1px solid black;
+            font-size: 0;
+        }
+
+        /* main>div {  
+            display: flex;
+
+        } */
+
+        main div div[data-tc='1'] {
+            background-color: black;
+            border: 1px dotted red;
+            box-sizing: border-box;
+            /* flex: 1; */
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <input type="range" value="30" max="50" id="col">col
+        <input type="range" value="20" max="50" id="row">row
+        <input type="range" value="10" id="cent">
+    </nav>
+    <nav>
+        <input type="button" value="evolution" id="evo">
+        <input type="button" value="reset">
+    </nav>
+    <main></main>
+    <script>
+
+        // setArray(main)
+        // setcent()
+
+        // col.addEventListener('click', () => setArray(main))
+        // col.addEventListener('click', setcent)
+        // row.addEventListener('click', () => setArray(main))
+        // row.addEventListener('click', setcent)
+
+        class Conway {
+            constructor(row, col) {
+                this.row = row
+                this.col = col
+                this.form = new Array(col * row).fill(0)
+                this.circular = false
+            }
+
+            randomFill(ratio) {
+                for (let i in this.form)
+                    this.form[i] = Math.random() < ratio ? 1 : 0
+            }
+
+            get(row, col) {
+                if (row < 0 || row >= this.row || col < 0 || col >= this.col)
+                    return 0 //无效值，超出范围
+                return this.form[row * this.col + col]
+            }
+
+            set(row, col, val) {
+                return this.form[row * this.col + col] = Number(Boolean(val))
+            }
+
+
+            repaint(r, c, e) {
+                this.row = r
+                this.col = c
+                this.form = new Array(c * r).fill(0)
+                col.nextSibling.data = 'col为' + c + '列'
+                row.nextSibling.data = 'row为' + r + '行'
+
+                dv.style.width = c * pix + 'px'
+                dv.style.height = r * pix + 'px'
+                this.randomFill(e)
+            }
+
+            getNeighbors(row, col) {
+                let count = 0
+
+                for (let r = row - 1; r <= row + 1; r++) {
+                    for (let c = col - 1; c <= col + 1; c++) {
+                        count += this.get(r, c)
+                    }
+                }
+
+                return count - this.get(row, col)
+            }
+
+
+            evolution() {
+                let newForm = new Conway(this.row, this.col)
+                for (let c = 0; c < this.col; c++) {
+                    for (let r = 0; r < this.row; r++) {
+                        let thisCell = this.get(r, c)
+                        let neighbers = this.getNeighbors(r, c)
+
+                        if (Boolean(thisCell)) {
+                            newForm[r * this.col + c] = neighbers < 2 || neighbers > 3 ? 0 : 1
+                        } else {
+                            newForm[r * this.col + c] = neighbers === 3 ? 1 : 0
+                        }
+                    }
+                }
+                this.form = newForm
+            }
+
+            printToHTML() {
+                let html = ''
+                for (let r = 0; r < this.row; r++) {
+                    html += '<div>'
+                    for (let c = 0; c < this.col; c++) {
+                        html += this.get(r, c) ?
+                            `<div data-row='${r}' data-col='${c}' style='width:${pix}px;height:${pix}px; display:inline-block' data-tc='1'></div>` :
+                            `<div data-row='${r}' data-col='${c}' style='width:${pix}px;height:${pix}px; display:inline-block' data-tc='0'></div>`
+                    }
+                    html += '</div>'
+                }
+                return html
+            }
+
+            printWorld() {
+                var str = ''
+                for (var r = 0; r < this.row; r++) {
+                    for (var c = 0; c < this.col; c++) {
+                        str += this.get(r, c) ? 'O' : '.'
+                    }
+                    str += '\n'
+                }
+                console.log(str)
+            }
+        }
+
+        let pix = 20
+
+        let result = new Conway(row.value, col.value)
+
+        col.nextSibling.data = 'col为' + col.value + '列'
+        row.nextSibling.data = 'row为' + row.value + '行'
+
+        let dv = document.querySelector('main')
+        dv.style.width = col.value * pix + 'px'
+        dv.style.height = row.value * pix + 'px'
+        result.randomFill(cent.value / 100)
+        // debugger
+        dv.innerHTML = result.printToHTML()
+
+
+        evo.addEventListener('click', () => {
+            result.evolution()
+            dv.innerHTML = result.printToHTML()
+        })
+
+        cent.addEventListener('click', () => {
+            result.repaint(row.value, col.value, cent.value / 100)
+            dv.innerHTML = result.printToHTML()
+        })
+
+
+        row.addEventListener('click', () => {
+            result.repaint(row.value, col.value, cent.value / 100)
+            dv.innerHTML = result.printToHTML()
+        })
+
+
+        col.addEventListener('click', () => {
+            result.repaint(row.value, col.value, cent.value / 100)
+            dv.innerHTML = result.printToHTML()
+        })
+
+
+        dv.addEventListener('click', e => {
+            let target = e.target
+            // debugger
+            let r = Number(target.dataset.row)
+            let c = Number(target.dataset.col)
+            result.set(r, c, target.dataset.tc === '1' ? 0 : 1)
+
+            document.querySelector(`[data-row="${r}"][data-col="${c}"]`).dataset.tc = result.get(r, c) ? '0' : '1'
+            // document.querySelector(`[data-row="${r}"][data-col="${c}"]`).dataset.tc = target.dataset.tc === '1' ? '0' : '1'
+        })
+
+        // function setArray(tomain = 'main') {
+        //     tomain.innerHTML = ''
+        //     // debugger
+        //     for (let u = 0; u < row.value; u++) {
+        //         let rows = document.createElement('div')
+        //         for (let i = 0; i < col.value; i++) {
+        //             let rowdate = document.createElement('input')
+        //             rowdate.classList.add('r' + u, 'c' + i)
+        //             rowdate.type = 'checkbox'
+        //             rows.append(rowdate)
+        //         }
+        //         tomain.append(rows)
+        //     }
+        //     col.nextSibling.data = 'col为' + col.value + '列'
+        //     row.nextSibling.data = 'row为' + row.value + '行'
+        // }
+
+
+        // function setcent() {
+        //     let cennb = col.value * row.value * cent.value / 100
+        //     cent.nextSibling.data = '自动填充' + cennb + '个,' + cent.value + '%'
+
+        //     let sets = document.querySelectorAll('main>div>input')
+        //     for (let i = 0; i < sets.length; i++)
+        //         sets[i].checked = Math.random() < 0.5 ? true : false
+        // }
+
+
+
+
+        // function evolution() {
+        //     // debugger
+        //     let sum = col.value * row.value
+        //     let sets = document.querySelectorAll('main>div>input')
+        //     let newmain = new DocumentFragment()
+        //     setArray(newmain)
+        //     let setdf = newmain.querySelectorAll('input')
+        //     for (let i = 0; i < sum; i++) {
+        //         let cellsef = checksef(i)
+        //         if (sets[i].checked) {
+        //             setdf[i].checked = (cellsef < 2 || cellsef > 3) ? false : true
+        //         } else {
+        //             if (cellsef === 3)
+        //                 setdf[i].checked = true
+        //         }
+        //     }
+        //     main.innerHTML = ''
+        //     main.append(newmain)
+        // }
+
+        // function checksef(i) {
+        //     let count = 0
+        //     let sets = document.querySelectorAll('main>div>input')
+        //     if (sets[i - +col.value - 1] && sets[i - +col.value - 1].checked)
+        //         count++
+        //     if (sets[i - +col.value] && sets[i - +col.value].checked)
+        //         count++
+        //     if (sets[i - +col.value + 1] && sets[i - +col.value + 1].checked)
+        //         count++
+        //     if (sets[i - 1] && sets[i - 1].checked)
+        //         count++
+        //     if (sets[i + 1] && sets[i + 1].checked)
+        //         count++
+        //     if (sets[i + +col.value - 1] && sets[i + +col.value - 1].checked)
+        //         count++
+        //     if (sets[i + +col.value] && sets[i + +col.value].checked)
+        //         count++
+        //     if (sets[i + +col.value + 1] && sets[i + +col.value + 1].checked)
+        //         count++
+        //     return count
+        // }
+
+    </script>
+</body>
+
+</html>

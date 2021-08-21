@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detect-triple-click</title>
+    <style>
+        div {
+            width: 400px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dv1" style="background-color: green;"></div>
+    <div id="dv2" style="background-color: orange;"></div>
+    <div id="dv3" style="background-color: firebrick;"></div>
+    <script>
+
+        dv1.addEventListener('click', e => {
+            console.log(e.detail, e)
+            let time = Date.now()
+        })
+
+
+
+
+        let last0 = 0
+        let last1 = 0
+        let last2 = 0
+        dv2.addEventListener('click', e => {
+            let time = Date.now()
+            console.log('simple click!-' + time)
+            if (time - last1 < 400 && last1 - last0 > 200) {
+                console.log('triple click!-' + time)
+            }
+
+            last0 = last1
+            last1 = last2
+            last2 = time
+        })
+
+
+
+
+        let last = 0
+        let count = 1
+        let id
+        dv3.addEventListener('click', e => {
+            let time = Date.now()
+            console.log('click-' + time)
+
+            // clearTimeout(id)
+            // id = setTimeout(() => {
+            //     count = 1
+            // }, 200)
+
+            if (time - last < 200) {
+                count++
+            } else {
+                count = 1
+            }
+
+            if (count === 2)
+                console.log('double click')
+            if (count === 3)
+                console.log('triple click')
+            if (count === 4)
+                console.log('quda click')
+            if (count === 5)
+                console.log('panta click')
+
+            last = time
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cloneDeep</title>
+</head>
+
+<body>
+    <script>
+        function cloneDeep(obj, map = new Map()) {
+            if (map.has(obj)) {//如果obj已经被复制过
+                return map.get(obj)//直接返回它的复制品
+            }
+
+            var result = {}// 否则，建立它的复制品
+            map.set(obj, result)//设置设置映射，以防重复复制
+            for (var key in obj) {
+                var val = obj[key]
+                if (val && typeof val === 'object') {
+                    result[key] = cloneDeep(val, map)
+                } else {
+                    result[key] = val
+                }
+            }
+            return result
+        }
+
+    </script>
+</body>
+
+</html>

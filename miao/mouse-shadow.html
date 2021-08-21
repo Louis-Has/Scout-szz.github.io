@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mouse-shadow</title>
+    <style>
+        div {
+            width: 30px;
+            height: 30px;
+            background-color: rgb(196, 93, 93);
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="left: 20px;top: 20px;"></div>
+    <div style="left: 40px;top: 40px;"></div>
+    <div style="left: 60px;top: 60px;"></div>
+    <div style="left: 60px;top: 60px;"></div>
+    <div style="left: 60px;top: 60px;"></div>
+    <script>
+        let fire = document.querySelectorAll('div')
+
+        let pointx
+        let pointy
+        addEventListener('mousemove', e => {
+            pointx = e.clientX
+            pointy = e.clientY
+        })
+
+        let dv = 200
+
+        requestAnimationFrame(function ani(time) {
+            let angle = time * 0.005
+
+            for (let it of fire) {
+                it.style.left = pointx + Math.cos(angle) * dv + 'px'
+                it.style.top = pointy + Math.sin(angle) * dv + 'px'
+                angle += Math.PI * 2 / fire.length
+            }
+            requestAnimationFrame(ani)
+        })
+    </script>
+</body>
+
+</html>
