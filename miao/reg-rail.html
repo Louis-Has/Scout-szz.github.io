@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reg-rail</title>
+</head>
+
+<body>
+    <script>
+        let str = '(a(a(a)?)+)*(p|d|(?<testname>ccc|ddd|eee|fff))(?!foo)(hufa|((a{2,4}b{0,99}c{1,99}d{3}e{4}f{4,})*)*(?:[^aeiwu]*)*(cd|ef|(fo[odc]+)+dd)+c[def]|def|abc)'
+        // let length = str.length
+
+        function regex_cell(val) {
+            this.val = val
+            this.type = 'char'
+            this.des = ''
+            //[{val:char,des:'|'},charClass,char]
+        }
+
+
+        let st = 0
+        function analysis(str) {
+            let node = new regex_cell([])
+            for (; st < str.length; st++) {
+                if (str[st] === '(') {
+                    //group
+                    st++
+                    let dv = analysis(str)
+                    node.val.push(dv)
+                    // st += dv.val.length + 2
+                    // while (str[st] !== ')')
+                    //     st++
+
+                } else if (str[st] === '[') {
+                    //charClass
+                    let dv = new regex_cell('')
+                    dv.type = 'charClass'
+                    while (str[++st] !== ']')
+                        dv.val += str[st]
+
+                    node.val.push(dv)
+
+                } else if (str[st] === '{') {
+                    //classifier
+                    while (str[++st] !== '}')
+                        node.val[node.val.length - 1].des += str[st]
+
+
+                } else if (str[st] === ')') {
+                    return node
+
+                } else {
+                    //char
+                    node.val.push(new regex_cell(str[st]))
+                }
+            }
+            return node
+        }
+        // debugger
+        console.log(analysis('s[ss2]n{2,4}df{22,4ffg}4(d[3]js(sa{2}j)ssf)sa'))
+
+        function regToPaint(node) {
+
+        }
+
+    </script>
+</body>
+
+</html>
