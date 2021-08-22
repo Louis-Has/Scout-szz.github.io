@@ -32,15 +32,26 @@
             sunt in? Dolor consequatur qui ab iure autem amet, vero itaque quod quibusdam, minus voluptas atque neque
             odit sequi repellat?</div>
     </div> -->
+
     <script src="/miao/jquery-3.6.0.js"></script>
+
     <script>
         let dv = document.querySelector('body>div')
 
-        let dv_dvs = dv.children
-        dv.dv_dvs.forEach(ele => {
-            let a = 11
+        let dv_dvs = Array.from(dv.children).reverse()
+        dv_dvs.forEach(ele => {
+            $(dv).prepend(`<button>${ele.dataset.tabname}</button>`)
+
+            dv.firstChild.addEventListener('click', () => {
+                dv_dvs.forEach(ele => {
+                    ele.style.display = 'none'
+                })
+                ele.style.display = 'block'
+                // console.log(ele.dataset.tabname)
+            })
         });
 
+        dv.firstChild.click()
     </script>
 </body>
 
