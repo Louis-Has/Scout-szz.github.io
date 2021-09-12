@@ -4,15 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="left=device-left, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>drag</title>
     <style>
+        body {
+            margin: 0;
+        }
+
         div {
             width: 80px;
             height: 60px;
             position: fixed;
             user-select: none;
         }
+
+
 
 
         /* body {
@@ -22,14 +28,19 @@
 </head>
 
 <body>
-    <div class="dragable" style="left: 20px; top: 20px; background: pink"></div>
-    <div class="dragable" style="left: 30px; top: 30px; background: blue"></div>
-    <div class="dragable" style="left: 40px; top: 40px; background: darkorchid"></div>
-    <div class="dragable" style="left: 50px; top: 50px; background: darkgreen"></div>
+    <main>
+        <svg height="500px" width="900px" style="border:1px solid red">
+            <!-- <path d="m 480 260 c 42 60,92 60,92 48" stroke="black" fill="transparent" /> -->
+        </svg>
+        <div class="dragable" style="left: 20px; top: 20px; background: pink"></div>
+        <div class="dragable" style="left: 30px; top: 30px; background: blue"></div>
+        <div class="dragable" style="left: 40px; top: 40px; background: darkorchid"></div>
+        <div class="dragable" style="left: 50px; top: 50px; background: darkgreen"></div>
+    </main>
     <script>
 
         // let dragable = document.querySelector('.dragable')
-        
+
         let maxZIndex = 1
         addEventListener('mousedown', function (e) {
             let startx = e.clientX
@@ -41,12 +52,12 @@
             addEventListener('mousemove', function move(f) {
                 if (f.which == 0 || f.buttons === 0) {
                     removeEventListener('mousemove', move)
-                    console.log('removed!')
+                    // console.log('removed!')
                     return
                 }
                 let dx = elstartx + f.clientX - startx
                 let dy = elstarty + f.clientY - starty
-                console.log(dx)
+                // console.log(dx)
 
                 let autoFit = 10
 
@@ -72,6 +83,56 @@
 
             })
         })
+
+        let dvs = document.querySelectorAll('main>div')
+        // dvs.forEach(e => {
+        //     e.addEventListener('mousemove', function paintMove(e) {
+        //         paintCurve(e.target)
+        //     })
+        // })
+
+        // let svg = document.createElement('svg')
+        // svg.style.height = 400 + 'px'
+        // svg.style.width = 800 + 'px'
+        // svg.style.border = '1px solid black'
+        // svg.style.position = 'absolute'
+        // document.querySelector('main').prepend(svg)
+        let svg = document.querySelector('svg')
+
+        let rad = 12
+
+        dvs.forEach(e => {
+            e.addEventListener('mousemove', e => {
+                svg.innerHTML = ''
+                for (let i = 1; i < dvs.length; i++) {
+                    let node1 = dvs[i - 1]
+                    let node2 = dvs[i]
+                    svg.append(svgEL('path', {
+                        d: `m ${node1.offsetLeft + node1.offsetWidth} ${node1.offsetTop + node1.offsetHeight / 2} 
+                        c ${node2.offsetLeft - node1.offsetLeft - node2.offsetWidth} ${0},
+                        ${0} ${node2.offsetTop - node1.offsetTop + node2.offsetHeight / 2 - node1.offsetHeight / 2},
+                        ${node2.offsetLeft - node1.offsetLeft - node2.offsetWidth} ${node2.offsetTop - node1.offsetTop + node2.offsetHeight / 2 - node1.offsetHeight / 2}`,
+                        stroke: 'red',
+                        fill: 'transparent'
+                    }))
+
+                }
+                return 'fine'
+            })
+        })
+
+
+
+        function svgEL(tagName, attrs) {
+            let dv = document.createElementNS('http://www.w3.org/2000/svg', tagName)
+            for (let key in attrs) {
+                let val = attrs[key]
+                dv.setAttribute(key, val)
+            }
+            console.log(dv)
+            return dv
+        }
+
     </script>
 </body>
 
