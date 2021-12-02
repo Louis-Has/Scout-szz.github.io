@@ -1,4 +1,4 @@
-import { Link, Route, Switch } from "react-router-dom";
+import { NavLink as Link, Route, Switch } from "react-router-dom";
 import BasicSetting from "./settings/BasicSetting";
 import HTTPSetting from "./settings/HTTPSetting";
 import FTPSetting from "./settings/FTPSetting";

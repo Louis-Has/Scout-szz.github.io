@@ -39,10 +39,14 @@
 
 /*    */
 
-.App {
+.App .dl {
   margin: 12px auto;
   display: flex;
   /* justify-content: center; */
   width: 400px;
   background-color: #3c3b3c;
+}
+
+.dl a.active {
+  color: red;
 }

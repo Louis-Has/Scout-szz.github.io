@@ -1,10 +1,14 @@
 // import logo from './logo.svg';
 import "./App.css";
-import { Link, Route, Switch } from "react-router-dom";
+import { NavLink as Link, Route, Switch, Redirect } from "react-router-dom";
 import Downloading from "./views/Downloading";
 import Completed from "./views/Completed";
 import NewTask from "./views/NewTask";
 import Setting from "./views/Setting";
+
+import TodoInput from "./Todos/TodoInput";
+import TodoList from "./Todos/TodoList";
+import TodoaState from "./Todos/TodoaState";
 
 function App() {
   return (
@@ -23,43 +27,55 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <aside>
-        <div>
-          <Link to="/">正在下载</Link>
-        </div>
-        <div>
-          <Link to="/completed">已完成</Link>
-        </div>
-        <div>
-          <Link to="/new">新建下载</Link>
-        </div>
-        <div>
-          <Link to="/setting">设置</Link>
-        </div>
-        <div>
-          <Link to="/servers">服务器列表</Link>
-        </div>
-      </aside>
+      <div className="dl">
+        <aside>
+          <div>
+            <Link to="/downloading">正在下载</Link>
+          </div>
+          <div>
+            <Link to="/completed">已完成</Link>
+          </div>
+          <div>
+            <Link to="/new">新建下载</Link>
+          </div>
+          <div>
+            <Link to="/setting">设置</Link>
+          </div>
+          <div>
+            <Link to="/servers">服务器列表</Link>
+          </div>
+        </aside>
 
-      <main>
-        <Switch>
-          <Route path="/completed">
-            <Completed />
-          </Route>
+        <main>
+          <Switch>
+            <Route path="/completed">
+              <Completed />
+            </Route>
 
-          <Route path="/new">
-            <NewTask />
-          </Route>
+            <Route path="/new">
+              <NewTask />
+            </Route>
 
-          <Route path="/setting">
-            <Setting />
-          </Route>
+            <Route path="/setting">
+              <Setting />
+            </Route>
 
-          <Route path="/">
-            <Downloading />
-          </Route>
-        </Switch>
-      </main>
+            <Route path="/downloading">
+              <Downloading />
+            </Route>
+
+            <Route path="/">
+              <Redirect to="/downloading" />
+            </Route>
+          </Switch>
+        </main>
+      </div>
+
+      <div className='todo'>
+        <TodoInput></TodoInput>
+        <TodoList></TodoList>
+        <TodoaState></TodoaState>
+      </div>
     </div>
   );
 }

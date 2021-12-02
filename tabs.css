@@ -1,0 +1,16 @@
+.datas {
+  border: 1px solid red;
+}
+
+.data {
+  display: flex;
+}
+
+.tab * {
+  margin:  0 4px;
+}
+
+.data * {
+  flex-grow: 1;
+  text-align: center;
+}
