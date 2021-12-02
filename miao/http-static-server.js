@@ -3,10 +3,11 @@ const fs = require('fs')
 const path = require('path')
 const url = require('url')
 const fsp = fs.promises
+const groupBy = require('lodash/groupBy')
 
 const mime = require('mime')
 
-const baseDir = 'D:/2-Code/github-damiao/miao'
+const baseDir = path.resolve('D:/2-Code/github-damiao/miao')
 
 
 let server = http.createServer()
@@ -30,11 +31,25 @@ server.on('request', async (req, res) => {
         res.end()
         return
     }
+    let decodeUrl = url.parse(req.url).pathname
+    let decodedUrl = decodeURIComponent(decodeUrl)
+    let targetPath = path.join(baseDir, decodedUrl)
+    console.log('require >', targetPath)
 
-    let decodeUrl = decodeURIComponent(url.parse(req.url).pathname)
-    let targetPath = path.join(baseDir, decodeUrl)
-    console.log(targetPath)
+    //防止请求其他地址的文件
+    if (!targetPath.startsWith(baseDir)) {
+        res.writeHead(401)
+        res.write('Pay Attention: No access!')
+        return
+    }
 
+    //隐藏.*文件
+    let pathParts = req.url.split('/')
+    if (pathParts.some(ele => ele.startsWith('.'))) {
+        res.writeHead(401)
+        res.write('Pay Attention: Hidden File!')
+        return
+    }
 
     try {
         let start = await fsp.stat(targetPath)
@@ -46,7 +61,10 @@ server.on('request', async (req, res) => {
                 let data = await fsp.readFile(targetPath)
                 let type = mime.getType(targetPath)
 
-                res.writeHead(200, { 'Content-Type': type })
+                res.writeHead(200, { 
+                    'Access-Contrl-Allow-Origin': '*',
+                    'Content-Type': type 
+                })
                 res.write(data)
                 res.end()
 
@@ -61,36 +79,71 @@ server.on('request', async (req, res) => {
         if (start.isDirectory()) {
 
             // is  directory
-            let entries = await fsp.readdir(targetPath, { withFileTypes: true })
 
-            // let fileStats = await Promise.all(filenames.map(name => path.join(targetPath, name)).map(fsp.stat))
+            // 如果 directory 不带'/',跳回'/'结尾,search暂时清除
+            if (!decodeUrl.endsWith('/')) {
+                res.writeHead(302, {
+                    location: decodeUrl + '/'
+                })
+                res.end()
+                return
+            }
 
-            // let fileStats = []
-            // for (let name of filenames) {
-            //     let stat = await fsp.stat(path.join(targetPath, name))
-            //     fileStats.push(stat)
-            // }
+            // 优先展示index.html
+            let indexPath = path.join(targetPath, 'index.html')
 
-            res.writeHead(200, {
-                'Content-Type': 'text/html;charset=UTF-8'
-            })
-            res.write(`
-            <h1>Index of${decodeUrl}</h1>
-            <div>${entries.map((entry) => {
-                let slash = entry.isDirectory() ? '/' : ''
-                return `<div><a href='${entry.name}${slash}'>${entry.name}${slash}</a></div>`
-            }).join('')}
-            <p>
-                Node.js ${process.version}/ the static server running @${req.socket.localAddress}:${port}
-            </p>
-            </div>`)
-            res.end()
+            try {
+                let indexData = await fsp.readFile(indexPath)
+                res.writeHead(200, {
+                    'Content-Type': 'text/html;charset=UTF-8',
+                    'Access-Contrl-Allow-Origin': '*',
+                })
+                res.write(indexData)
+                res.end()
+
+            } catch (err) {
+                // index.html 不存在 或 是文件夹
+                if (err.code === 'ENOENT' || err.code === 'EISDIR') {
+                    let entries = await fsp.readdir(targetPath, { withFileTypes: true })
+
+                    // let fileStats = await Promise.all(filenames.map(name => path.join(targetPath, name)).map(fsp.stat))
+
+                    // let fileStats = []
+                    // for (let name of filenames) {
+                    //     let stat = await fsp.stat(path.join(targetPath, name))
+                    //     fileStats.push(stat)
+                    // }
+
+                    let filteredEntries = entries.filter(it => !it.name.startsWith('.'))
+                    let groupedEntries = groupBy(filteredEntries, it => { return it.isDirectory() ? 'dirs' : 'files' })
+
+                    res.writeHead(200, {
+                    'Access-Contrl-Allow-Origin': '*',
+                    'Content-Type': 'text/html;charset=UTF-8'
+                    })
+                    res.write(`
+                    <h1>Index of${decodedUrl}</h1>
+                    <div>
+                    <div style='border-bottom:4px solid #E0C284;width:fit-content'><a style='text-decoration:none' href='../'>../</a></div>
+                    <div>${(groupedEntries.dirs || []).map(it => `<div style='border-bottom:4px solid #E0C284;width:fit-content'><a style='text-decoration:none' href='${it.name}/'>${it.name}/</a></div>`).join('')}</div>
+                    <div>${(groupedEntries.files || []).map(it => `<div style='border-bottom:1px solid #237FD5;width:fit-content'><a style='text-decoration:none' href='${it.name}'>${it.name}</a></div>`).join('')}</div>
+                    <p>
+                    Node.js ${process.version}/ the static server running @${req.socket.localAddress}:${port}
+                    </p>
+                    </div>`)
+                    res.end()
+
+                } else {
+                    throw err
+                }
+            }
+
         }
 
     } catch (err) {
         if (err.code === 'ENOENT') {
             res.writeHead(404)
-            res.writeHead('404 Not Found')
+            res.write('404 Not Found')
             res.end()
         } else {
             throw err

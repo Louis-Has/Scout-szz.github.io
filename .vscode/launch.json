@@ -9,7 +9,7 @@
             "name": "localhost",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceFolder}\\miao\\listFiles.js",
+            "program": "${workspaceFolder}\\miao\\Express\\app.js",
         }
     ]
 }

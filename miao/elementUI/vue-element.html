@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>progress</title>
+</head>
+
+<body>
+    <div class="" id="root"></div>
+    <script src="../vue@2.6.14.js"></script>
+    <script>
+        Vue.component('el-progress', {
+            props: {
+                percentage: {
+                    type: Number,
+                    default: 0,
+                },
+                color: {
+                    type: String,
+                    default: '#50A0FC',
+                },
+                'stroke-width': {
+                    type: Number,
+                    default: 24,
+                },
+                'text-inside': {
+                    type: Boolean,
+                    default: false,
+                },
+                width: {
+                    type: Number,
+                    default: 350,
+                }
+            },
+
+            template: `
+                <div style="margin:24px;position:relative">
+                    <span style="position:absolute" :style="{marginLeft:textPosition,lineHeight:strokeWidth+'px',color:textColor}">{{percentage}}%</span>
+                    <div style="display:inline-block;border-radius:200px;background-color:#EBEEF5" :style="{height:strokeWidth+ 'px',width:width + 'px'}">
+                        <div style="height:100%;border-radius:200px" :style="{width: percentage + '%',backgroundColor:color}"></div> 
+                    </div>
+                </div>
+            `,
+
+            data() {
+                return {
+                }
+            },
+
+            computed: {
+                textPosition() {
+                    return this.textInside ? `${this.width / 100 * this.percentage - 50}px` : `${this.width + 12}px`
+                },
+                textColor() {
+                    return this.textInside ? 'white' : 'black'
+                }
+            }
+        })
+
+        Vue.component('el-input-number', {
+            props: {
+                value: {
+                    type: Number,
+                    default: 0
+                },
+                width: {
+                    type: Number,
+                    default: 36
+                },
+                min: {
+                    type: Number,
+                    default: 0,
+                },
+                max: {
+                    type: Number,
+                    default: 100,
+                },
+                step: {
+                    type: Number,
+                    default: 1,
+                }
+            },
+
+            data() {
+                return {
+                    current: this.value
+                }
+            },
+
+            template: `
+            <div style="font-size:0;border:1px solid #5CA2F9;width:fit-content" >
+                <button :style="{width:width +'px',height:width+'px'}" @click="dec" >-</button>
+                <input type="text" @blur="fix" :value="current" :style="{width:width*3 +'px',height:width+'px'}"  style="box-sizing:border-box;text-align:center">
+                <button :style="{width:width +'px',height:width+'px'}" @click="inc">+</button>
+            </div>
+            `,
+
+            methods: {
+                inc() {
+                    this.current += this.step
+                    this.current = Math.min(this.current, this.max)
+                },
+                dec() {
+                    this.current -= this.step
+                    this.current = Math.max(this.current, this.min)
+                },
+                fix(el) {
+                    let val = Number(el.target.value.trim())
+                    if (Number.isNaN(val)) {
+                        this.$forceUpdate()
+                    } else {
+                        if (val < this.min) {
+                            this.$forceUpdate()
+                            // this.current = this.min
+                        } else if (val > this.max) {
+                            this.$forceUpdate()
+                            // this.current = this.max
+                        } else {
+                            this.current = val
+                        }
+                    }
+                }
+            },
+
+            watch: {
+                current(val) {
+                    this.$emit('change', val)
+                }
+            }
+        })
+
+
+        function range(start, end, step = 1) {
+            return Array.from({ length: (end - start) / step + 1 }, (_, i) => start + (i * step))
+        }
+
+        Vue.component('el-pagination', {
+            props: {
+                total: {
+                    type: Number,
+                    required: true,
+                },
+                pageSize: {
+                    type: Number,
+                    default: 10,
+                },
+                layout: {
+                    type: String,
+                    default: 'prev, pager, next, jumper, ->, total',
+                },
+                size: {
+                    type: Number,
+                    default: 32
+                },
+                buttonColor: {
+                    type: String,
+                    default: '#F1F1F1',
+                },
+                pagerCount: {
+                    type: Number,
+                    default: 8,
+                }
+            },
+
+            data() {
+                let layout = this.layout.split(',').map(it => it.trim())
+                let pageCount = Math.ceil(this.total / this.pageSize)
+                return {
+                    showPrev: layout.includes('prev'),
+                    showPager: layout.includes('pager'),
+                    showNext: layout.includes('next'),
+                    pageCount,
+                    currentPage: 1
+                }
+            },
+
+            computed: {
+                currentPages() {
+                    if (this.pageCount <= this.pagerCount)
+                        return this.pageCount
+
+                    let num = Math.floor((this.pagerCount - 1) / 2)
+                    if (this.currentPage <= num) {
+                        return range(1, 1 + num * 2)
+                    } else if (this.pageCount - this.currentPage <= num) {
+                        return range(this.pageCount - num * 2, this.pageCount)
+                    } else {
+                        return range(this.currentPage - num, this.currentPage + num)
+                    }
+                },
+            },
+
+            template: `
+                <div style="display:flex">
+                    <button v-if="showPrev" @click="dec" :style="{width:size+'px',height:size+'px'}" style="border-radius:4px;border:0;background-color:buttonColor"><</button>
+                        <ul v-if="showPager"  style="display:flex;list-style-type:none;padding:0;margin:0">
+                            <li v-for="i of currentPages"><button @click="currentPage = i" :style="{width:size+'px',height:size+'px',color:currentPage === i ? 'white':'black',backgroundColor: currentPage === i ? '#5CA2F9':buttonColor}" style="border-radius:4px;margin-left:6px;margin-right:6px;border:0">{{i}}</button></li>
+                        </ul>
+                    <button v-if="showNext" @click="inc" :style="{width:size+'px',height:size+'px'}" style="border-radius:4px;border:0;background-color:buttonColor">></button>
+                </div>
+            `,
+
+            methods: {
+                inc() {
+                    this.currentPage++
+                    this.currentPage = Math.min(this.currentPage, this.pageCount)
+                },
+                dec() {
+                    this.currentPage--
+                    this.currentPage = Math.max(this.currentPage, 1)
+                },
+            },
+
+            watch: {
+                currentPage(val) {
+                    this.$emit('current-change', val)
+                }
+            },
+
+        })
+
+        let app = new Vue({
+            el: '#root',
+
+            data() {
+                return {
+                    list: Array(300).fill(0).map((it, i) => `${i + 1}-${(Math.random() * 100).toFixed(3)}`),
+                    pageSize: 20,
+                    page: 1,
+                }
+            },
+
+            template: `
+                <div>
+                    <ul>
+                        <li v-for="it of list.slice((page - 1) * pageSize,page * pageSize)">{{it}}</li>
+                    </ul>
+                    <el-pagination :total="list.length" :pageSize=pageSize @current-change="page = $event"></el-pagination>
+                    
+                    <el-progress :percentage="50"></el-progress>
+                    <el-progress :percentage="100" :stroke-width="26" ></el-progress>
+                    <el-progress :percentage="100" :text-inside="true" status="success" ></el-progress>
+                    <el-progress :percentage="40" :text-inside="true" status="warning" ></el-progress>
+                    <el-progress :percentage="80" status="exception" :stroke-width="18" ></el-progress>
+
+                    <el-input-number :value="16" @change="f" :min="10" :max="90" :step="4" label="描述文字"></el-input-number>
+                    <el-input-number :value="4" :min="1" :max="10" label="描述文字"></el-input-number>
+
+                    <span class="demonstration">页数较少时的效果</span>
+                    <el-pagination layout="prev, pager, next" :total="50"></el-pagination>
+                    
+                </div>
+            `,
+            methods: {
+                f(el) {
+                    console.log(el)
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

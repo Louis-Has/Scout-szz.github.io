@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello World</title>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+
+  <!-- Don't use this in production: -->
+  <script src="./babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    let { Component } = React
+
+    class Todo extends Component {
+      state = { //class field
+        editingIdx: -1,
+        show: 'all',
+        lastId: 4,
+        todos: [
+          {
+            text: "eat",
+            done: true,
+            id: 1,
+          },
+          {
+            text: "drink",
+            done: false,
+            id: 2,
+          },
+          {
+            text: "bread",
+            done: true,
+            id: 3,
+          }]
+      }
+
+      dec = () => { //事件函数~
+        this.setState({
+          lastId: this.state.lastId + 1
+        })
+      }
+
+      clearCompleted = () => {
+        this.setState({
+          todos: this.state.todos.filter(it => !it.done)
+        })
+      }
+
+      deleteTodo(targetTodo) {
+        this.setState({
+          todos: this.state.todos.filter((it, index) => it !== targetTodo)
+        })
+      }
+
+      getVIsibleTodos() {
+        if (this.state.show == 'active') {
+          return this.state.todos.filter(it => it.done)
+        } else if (this.state.show == 'completed') {
+          return this.state.todos.filter(it => !it.done)
+        } else {
+          return this.state.todos
+        }
+      }
+
+      isALlDone() {
+        return this.state.todos.length && this.state.todos.every(it => it.done)
+      }
+
+      toggleAll = () => {
+        if (this.isALlDone()) {
+          this.setState({
+            todos: this.state.todos.map(it => {
+              if (!it.done) {
+                return it
+              } else {
+                return {
+                  ...it, done: false
+                }
+              }
+            })
+          })
+        } else {
+          this.setState({
+            todos: this.state.todos.map(it => {
+              if (it.done) {
+                return it
+              } else {
+                return {
+                  ...it, done: true
+                }
+              }
+            })
+          })
+        }
+      }
+
+      toggleTodo(targetTodo) {
+        this.setState({
+          todos: this.state.todos.map((it, i) => {
+            if (it === targetTodo) {
+              return {
+                ...it, done: !it.done,
+              }
+            } else {
+              return it
+            }
+          })
+        })
+      }
+
+      addTodo = (e) => {
+        if (e.key == 'Enter') {
+          let text = e.targetTodo.value.trim()
+          if (text) {
+            this.setState({
+              todos: [...this.state.todos, { text: text, done: false }]
+            })
+            e.targetTodo.value = ''
+          }
+        }
+      }
+
+      render() {
+        return (
+          <div>
+            <div>
+              <input type="checkbox" checked={this.isALlDone()} onChange={this.toggleAll} />
+              <input type="text" onKeyUp={this.addTodo} />
+            </div>
+            <ul>
+              {this.getVIsibleTodos().map((todo, idx) => {
+                return (
+                  <li key={idx}>
+                    <input type="checkbox" checked={todo.done} onChange={() => this.toggleTodo(todo)} />
+                    <span>{todo.text}</span>
+                    <button onClick={() => this.deleteTodo(idx)}>&times;</button>
+                  </li>
+                )
+              })}
+            </ul>
+            <div>
+              <span> {this.state.todos.filter(it => !it.done).length} items left</span>
+              <div>
+                <label ><input type="radio" onChange={() => this.setState({ show: 'all' })} checked={this.state.show == 'all'} />All</label>
+                <label ><input type="radio" onChange={() => this.setState({ show: 'active' })} checked={this.state.show == 'active'} />Active</label>
+                <label ><input type="radio" onChange={() => this.setState({ show: 'completed' })} checked={this.state.show == 'completed'} />Completed</label>
+              </div>
+              {
+                this.state.todos.some(it => it.done) &&
+                <button onClick={this.clearCompleted}>Clear completed </button>
+              }
+            </div>
+          </div>
+        )
+      }
+
+    }
+
+
+    ReactDOM.render(
+      // <h1>Hello, world!</h1>,
+      <Todo />,
+      document.getElementById('root')
+    );
+
+  </script>
+  <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+</body>
+
+</html>

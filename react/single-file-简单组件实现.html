@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello World</title>
+  <script src="./react.development.js"></script>
+  <script src="./react-dom.development.js"></script>
+
+  <!-- Don't use this in production: -->
+  <script src="./babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    let { Component } = React
+
+    //Progress进度条
+
+    function Progress({ percent, status = 'active', showInfo = true }) {
+      let color = percent == 100
+        ? '#67C331'
+        : {
+          active: '#3693FC',
+          exception: '#F44A4F',
+        }[status]
+
+      return (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ borderRadius: '12px', height: '10px', width: '400px', marginRight: '12px', backgroundColor: '#F5F5F5' }}>
+            <div style={{ borderRadius: '12px', height: '100%', width: percent + '%', backgroundColor: color }}></div>
+          </div>
+          {showInfo &&
+            <div>{
+              status == 'exception'
+                ? <span>x</span>
+                : percent == 100
+                  ? <span>√</span>
+                  : <span>{percent}%</span>
+            }
+            </div>
+          }
+        </div>
+      )
+    }
+
+    // Progress.defaultProps = {
+    //   showInfo: true,
+    //   status: 'active',
+    // }
+
+
+    // InputNumber数字输入框
+
+    class InputNumber extends Component {
+      constructor(props) {
+        super()
+        this.state = {
+          value: props.defaultValue
+        }
+      }
+
+
+      handleChange = (e) => {
+        let val = e.target.value
+        let num = parseInt(val)
+        if (!Number.isNaN(num)) {
+          num = Math.max(num, this.props.min)
+          num = Math.min(num, this.props.max)
+          if (num != this.state.value) {
+            this.setState({
+              value: num
+            }, this.emitChange)
+          }
+        }
+      }
+
+      dec = () => {
+        this.setState({
+          value: Math.max(this.state.value - 1, this.props.min)
+        }, this.emitChange)
+      }
+
+      inc = () => {
+        this.setState({
+          value: Math.min(this.state.value + 1, this.props.max)
+        }, this.emitChange)
+      }
+
+
+      emitChange = () => {
+        if (typeof this.props.onChange === 'function') {
+          this.props.onChange(this.state.value)
+        }
+      }
+
+
+      render() {
+        return (
+          <div>
+            <button onClick={this.dec}>-</button>
+            <input
+              type="text"
+              style={{ width: '40px' }}
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+            <button onClick={this.inc}>+</button>
+          </div>
+        )
+      }
+    }
+
+    function f(num) {
+      console.log('f say:' + num)
+    }
+
+
+
+    //Pagination分页
+    class Pagination extends Component {
+      static defaultProps = {
+        pageSize: 10,
+        defaultCurrent: 1,
+      }
+
+
+      constructor(props) {
+        super()
+        this.state = {
+          current: props.current ?? props.defaultCurrent,
+          page: Math.ceil(props.total / props.pageSize),
+        }
+      }
+
+
+      set = (n) => {
+        if (n == this.state.current) {
+          return
+        } else {
+          this.setState({
+            current: n,
+          }, this.emitChange)
+        }
+      }
+
+
+
+      dec = () => {
+        this.setState({
+          current: Math.max(this.state.current - 1, 1)
+        }, this.emitChange)
+      }
+
+      inc = () => {
+        this.setState({
+          current: Math.min(this.state.current + 1, this.state.page)
+        }, this.emitChange)
+      }
+
+
+      emitChange = () => {
+        if (typeof this.props.onChange === 'function') {
+          this.props.onChange(this.state.value)
+        }
+      }
+
+
+      renderLists() {
+        let pages = []
+        Array(this.state.page).fill(0).map((it, i) => {
+          pages.push(<button
+            key={String(i + 1)}
+            style={{ color: (i + 1) == (this.props.current ?? this.state.current) ? 'red' : '#262626' }}
+            onClick={() => this.set(i + 1)}
+          > {i + 1}</button>)
+        })
+        return pages
+      }
+
+
+      render() {
+        return (
+          <div>
+            <button onClick={this.dec}>&lt;</button>
+            {this.renderLists()}
+            <button onClick={this.inc}>&gt;</button>
+          </div>
+        )
+      }
+    }
+
+
+    ReactDOM.render(
+      <>
+        <Pagination
+          defaultCurrent={1}
+          total={60}
+        />
+
+        <InputNumber min={1} max={10} defaultValue={3} onChange={f} />
+
+        <Progress percent={30} />
+        <Progress percent={50} status="active" />
+        <Progress percent={70} status="exception" />
+        <Progress percent={100} />
+        <Progress percent={50} showInfo={false} />
+      </>,
+      document.getElementById('root')
+    );
+
+  </script>
+  <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+</body>
+
+</html>
