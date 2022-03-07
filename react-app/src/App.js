@@ -71,7 +71,7 @@ function App() {
         </main>
       </div>
 
-      <div className='todo'>
+      <div className="todo">
         <TodoInput></TodoInput>
         <TodoList></TodoList>
         <TodoaState></TodoaState>
